@@ -6,7 +6,7 @@ import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 
 const { width, height } = Dimensions.get("window"); // Get the screen dimensions
 
-const Welcome = () => {
+export default function Welcome(props) {
   const navigation = useNavigation();
 
   return (
@@ -31,7 +31,7 @@ const Welcome = () => {
       <View style={styles.joinbutton}>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Signin")}
         >
           <Text style={styles.jointext}>Join Now</Text>
         </Pressable>
@@ -39,7 +39,7 @@ const Welcome = () => {
     </View>
   );
 };
-export default Welcome;
+
 const styles = StyleSheet.create({
   bgIcon: {
     width: 650,
