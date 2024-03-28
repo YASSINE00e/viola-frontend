@@ -18,8 +18,7 @@ import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Signin(props) {
-  const { setSignedIn } = props.params;
+export default function Signin({ setSignedIn, navigation }) {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -29,7 +28,7 @@ export default function Signin(props) {
           contentFit="cover"
           source={require("../assets/bg1.png")}
         />
-        <Pressable onPress={() => props.navigation.navigate("Welcome")}>
+        <Pressable onPress={() => navigation.navigate("Welcome")}>
           <Image
             style={styles.backButtonIcon}
             contentFit="cover"
@@ -54,6 +53,7 @@ export default function Signin(props) {
             style={styles.input}
             //onChangeText={onChangeNumber}
             //value={number}
+            secureTextEntry
             placeholder="**********"
           />
 
@@ -68,7 +68,7 @@ export default function Signin(props) {
             <Text style={[styles.text,{paddingLeft:20}]}>Don’t have an account?</Text>
             <Pressable
               style={styles.text}
-              onPress={() => props.navigation.navigate("Signup")}
+              onPress={() => navigation.navigate("Signup")}
             >
               <Text style={[styles.text,{fontWeight: 'bold',marginLeft: -30}]}>Sign Up</Text>
             </Pressable>

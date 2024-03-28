@@ -4,7 +4,7 @@ import Welcome from "../screens/Welcome";
 import Signin from "../screens/Signin";
 import Signup from "../screens/Signup";
 const Stack = createNativeStackNavigator();
-export default function Welcomestack(props) {
+export default function Welcomestack({ setSignedIn }) {
 
 
 
@@ -16,7 +16,9 @@ export default function Welcomestack(props) {
           }}
         >
           <Stack.Screen name="Welcome" component={Welcome} />
-          <Stack.Screen name="Signin" component={Signin} initialParams={props} />
+          <Stack.Screen name="Signin" options={{}}>
+          {(screenProps) => <Signin {...screenProps} setSignedIn={setSignedIn} />}
+        </Stack.Screen>
           <Stack.Screen name="Signup" component={Signup} />
 
         </Stack.Navigator>
