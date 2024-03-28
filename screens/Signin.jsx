@@ -19,7 +19,6 @@ import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
 const { width, height } = Dimensions.get("window");
 
 export default function Signin({ setSignedIn, navigation }) {
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
@@ -45,7 +44,7 @@ export default function Signin({ setSignedIn, navigation }) {
             style={styles.input}
             //onChangeText={onChangeNumber}
             //value={number}
-            keyboardType='numeric'
+            keyboardType="numeric"
             placeholder="123456789"
           />
           <Text style={styles.text}>Enter your password</Text>
@@ -58,20 +57,23 @@ export default function Signin({ setSignedIn, navigation }) {
           />
 
           <View style={styles.Loginbutton}>
-            <Pressable
-              style={styles.button}
-              onPress={() => setSignedIn(true)}
-            >
+            <Pressable style={styles.button} onPress={() => setSignedIn(true)}>
               <Text style={styles.Logintext}>Login</Text>
             </Pressable>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={[styles.text,{paddingLeft:20}]}>Don’t have an account?</Text>
-            <Pressable
-              style={styles.text}
-              onPress={() => navigation.navigate("Signup")}
-            >
-              <Text style={[styles.text,{fontWeight: 'bold',marginLeft: -30}]}>Sign Up</Text>
-            </Pressable>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Text style={[styles.text, { paddingLeft: 20 }]}>
+                Don’t have an account?
+              </Text>
+              <Pressable
+                style={styles.text}
+                onPress={() => navigation.navigate("Signup")}
+              >
+                <Text
+                  style={[styles.text, { fontWeight: "bold", marginLeft: -30 }]}
+                >
+                  Sign Up
+                </Text>
+              </Pressable>
             </View>
           </View>
         </View>
@@ -82,7 +84,7 @@ export default function Signin({ setSignedIn, navigation }) {
 
 const styles = StyleSheet.create({
   bg: {
-    bottom: -100,
+    top: height*0.3,
     right: 0,
     width: 650,
     height: 715,
@@ -94,7 +96,6 @@ const styles = StyleSheet.create({
     height: 45,
     width: 45,
     position: "absolute",
-
   },
   Logintext: {
     color: Color.colorWhite,
@@ -114,7 +115,8 @@ const styles = StyleSheet.create({
 
   signincontainer: {
     flex: 1,
-    justifyContent: "center",
+    top:height*0.35,
+    //justifyContent: "center",
     alignItems: "center",
   },
   text: {
