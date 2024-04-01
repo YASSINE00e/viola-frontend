@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { Image } from "expo-image";
 import {
   StyleSheet,
@@ -6,26 +6,25 @@ import {
   View,
   SafeAreaView,
   Pressable,
-  Button,
   Dimensions,
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
-  KeyboardAvoidingView,
-  Platform,
+  TouchableOpacity,
 } from "react-native";
-import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
+import { FontSize, FontFamily, Color } from "../GlobalStyles";
 
 const { width, height } = Dimensions.get("window");
 
 export default function Signin({ setSignedIn, navigation }) {
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
         <Image
           style={styles.bg}
           contentFit="cover"
-          source={require("../assets/bg1.png")}
+          source={require("../assets/bg.png")}
         />
         <Pressable onPress={() => navigation.navigate("Welcome")}>
           <Image
@@ -52,15 +51,40 @@ export default function Signin({ setSignedIn, navigation }) {
             style={styles.input}
             //onChangeText={onChangeNumber}
             //value={number}
-            secureTextEntry
+            secureTextEntry={isSecureEntry}
             placeholder="**********"
+            /*
+            icon={
+              <TouchableOpacity
+                style={styles.iconContainer}
+                onPress={() => {
+                  setIsSecureEntry(!isSecureEntry);
+                }}
+              >
+                <Image
+                  style={styles.icon}
+                  source={
+                    isSecureEntry
+                      ? require("../assets/show.png")
+                      : require("../assets/hide.png")
+                  }
+                />
+              </TouchableOpacity>
+            }
+             */
           />
 
           <View style={styles.Loginbutton}>
             <Pressable style={styles.button} onPress={() => setSignedIn(true)}>
               <Text style={styles.Logintext}>Login</Text>
             </Pressable>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: 15,
+              }}
+            >
               <Text style={[styles.text, { paddingLeft: 20 }]}>
                 Don’t have an account?
               </Text>
@@ -84,11 +108,17 @@ export default function Signin({ setSignedIn, navigation }) {
 
 const styles = StyleSheet.create({
   bg: {
-    top: height*0.3,
+    top: height * 0.3,
     right: 0,
     width: 650,
     height: 715,
     position: "absolute",
+    tintColor: Color.bg1,
+  },
+  icon: {
+    position: "absolute",
+    height: 20,
+    width: 20,
   },
   backButtonIcon: {
     top: 35,
@@ -98,24 +128,24 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   Logintext: {
-    color: Color.colorWhite,
+    color: Color.White,
     textAlign: "center",
     padding: 12,
     fontSize: 18,
     fontWeight: "bold",
   },
   button: {
-    backgroundColor: Color.colorBlack,
+    backgroundColor: Color.Black,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: Color.colorBlack,
+    borderColor: Color.Black,
     width: width * 0.8,
     height: 55,
   },
 
   signincontainer: {
     flex: 1,
-    top:height*0.35,
+    top: height * 0.35,
     //justifyContent: "center",
     alignItems: "center",
   },
@@ -129,7 +159,7 @@ const styles = StyleSheet.create({
   input: {
     borderRadius: 20,
     borderWidth: 1,
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.White,
     borderColor: "#D1D1D1",
     width: "80%",
     padding: 10,
@@ -138,7 +168,7 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.White,
     flex: 1,
     width: "100%",
   },
@@ -146,7 +176,7 @@ const styles = StyleSheet.create({
   enterYourNumber: {
     flex: 1,
     top: height * 0.2,
-    fontSize: FontSize.size_lg,
+    fontSize: FontSize.small,
     fontWeight: "500",
     fontFamily: FontFamily.interSemiBold,
     color: "#565656",
@@ -157,9 +187,9 @@ const styles = StyleSheet.create({
   welcomeBack: {
     flex: 1,
     top: height * 0.15,
-    fontSize: FontSize.size_13xl,
+    fontSize: FontSize.medium,
     fontFamily: FontFamily.interBold,
-    color: Color.colorBlack,
+    color: Color.Black,
     width: width * 0.6,
     fontWeight: "900",
     position: "absolute",

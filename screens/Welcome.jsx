@@ -2,9 +2,9 @@ import * as React from "react";
 import { Image } from "expo-image";
 import { StyleSheet, View, Pressable, Text, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
+import { Color, FontFamily, FontSize } from "../GlobalStyles";
 
-const { width, height } = Dimensions.get("window"); // Get the screen dimensions
+const { width, height } = Dimensions.get("window");
 
 export default function Welcome(props) {
   const navigation = useNavigation();
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     width: 650,
     height: 715,
     position: "absolute",
+    tintColor:Color.bg,
   },
   logocontainer: {
     marginTop: height * 0.2,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   jointext: {
-    color: Color.colorWhite,
+    color: Color.White,
     textAlign: "center",
     padding: 18,
     fontSize: 25,
@@ -70,9 +71,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   button: {
-    backgroundColor: Color.colorBlack,
+    backgroundColor: Color.Black,
     borderWidth: 2,
-    borderColor: Color.colorBlack,
+    borderColor: Color.Black,
     borderRadius: 25,
     width: width * 0.6,
     height: 55,
@@ -80,13 +81,13 @@ const styles = StyleSheet.create({
   textcontainer: {
     bottom: 150,
     position: "absolute",
-    color: Color.colorBlack,
+    color: Color.Black,
     textAlign: "left",
     left: 30,
   },
   letsGetStarted: {
     fontSize: 75,
-    fontWeight: "800",
+    fontWeight:"900",
     fontFamily: FontFamily.interExtraBold,
     width: width * 0.9,
   },
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.White,
     flex: 1,
     width: "100%",
     justifyContent: "space-between",

@@ -6,15 +6,12 @@ import {
   View,
   SafeAreaView,
   Pressable,
-  Button,
   Dimensions,
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
-  KeyboardAvoidingView,
-  Platform,
 } from "react-native";
-import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
+import { FontSize, FontFamily, Color } from "../GlobalStyles";
 
 const { width, height } = Dimensions.get("window");
 
@@ -25,7 +22,7 @@ export default function Signup({ setSignedIn, navigation }) {
         <Image
           style={styles.bg}
           contentFit="cover"
-          source={require("../assets/union.png")}
+          source={require("../assets/bg.png")}
         />
         <Pressable onPress={() => navigation.navigate("Welcome")}>
           <Image
@@ -34,7 +31,7 @@ export default function Signup({ setSignedIn, navigation }) {
             source={require("../assets/back-button.png")}
           />
         </Pressable>
-        <Text style={styles.welcomeBack}>{`Create
+        <Text style={styles.createaccount}>{`Create
 Account :)`}</Text>
 
         <View style={styles.signincontainer}>
@@ -89,11 +86,13 @@ Account :)`}</Text>
 
 const styles = StyleSheet.create({
   bg: {
-    top:height*.15,
+    top: height * 0.15,
     width: 600,
     height: 715,
     position: "absolute",
     alignSelf: "center",
+    tintColor: Color.bg2,
+    opacity: 0.25,
   },
   backButtonIcon: {
     top: 35,
@@ -103,17 +102,17 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   Logintext: {
-    color: Color.colorWhite,
+    color: Color.White,
     textAlign: "center",
     padding: 12,
     fontSize: 18,
     fontWeight: "bold",
   },
   button: {
-    backgroundColor: Color.colorBlack,
+    backgroundColor: Color.Black,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: Color.colorBlack,
+    borderColor: Color.Black,
     width: width * 0.8,
     height: 55,
   },
@@ -134,7 +133,7 @@ const styles = StyleSheet.create({
   input: {
     borderRadius: 20,
     borderWidth: 1,
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.White,
     borderColor: "#D1D1D1",
     width: "80%",
     padding: 10,
@@ -143,28 +142,17 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.White,
     flex: 1,
     width: "100%",
   },
 
-  enterYourNumber: {
-    flex: 1,
-    top: height * 0.2,
-    fontSize: FontSize.size_lg,
-    fontWeight: "500",
-    fontFamily: FontFamily.interSemiBold,
-    color: "#565656",
-    width: width * 0.7,
-    position: "absolute",
-    left: 40,
-  },
-  welcomeBack: {
+  createaccount: {
     flex: 1,
     top: height * 0.15,
-    fontSize: FontSize.size_13xl,
+    fontSize: FontSize.medium,
     fontFamily: FontFamily.interBold,
-    color: Color.colorBlack,
+    color: Color.Black,
     width: width * 0.6,
     fontWeight: "900",
     position: "absolute",

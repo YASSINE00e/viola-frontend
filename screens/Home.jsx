@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     height: 75,
   },
   homePage: {
-    borderRadius: Border.br_21xl,
     backgroundColor: Color.colorWhite,
     flex: 1,
     width: "100%",
