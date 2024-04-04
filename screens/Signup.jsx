@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { Image } from "expo-image";
 import {
   StyleSheet,
@@ -16,6 +16,13 @@ import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 const { width, height } = Dimensions.get("window");
 
 export default function Signup({ setSignedIn, navigation }) {
+  const [name, onChangeName] = useState("");
+  const [surname, onChangeSurname] = useState("");
+  const [number, onChangeNumber] = useState("");
+  const [email, onChangeEmail] = useState("");
+  const [password, onChangePassword] = useState("");
+
+  const handleSignup = async () => {};
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
@@ -26,55 +33,55 @@ export default function Signup({ setSignedIn, navigation }) {
         />
         <Pressable onPress={() => navigation.navigate("Welcome")}>
           <Image
-            style={styles.backButtonIcon}
+            style={styles.backButton}
             contentFit="cover"
             source={require("../assets/back-button.png")}
           />
         </Pressable>
-        <Text style={styles.createaccount}>{`Create
+        <Text style={styles.title}>{`Create
 Account :)`}</Text>
 
-        <View style={styles.signincontainer}>
+        <View style={styles.signupcontainer}>
           <Text style={styles.text}>Enter your name</Text>
           <TextInput
             style={styles.input}
-            //onChangeText={onChangeNumber}
-            //value={number}
+            onChangeText={onChangeName}
+            value={name}
             placeholder="name"
           />
           <Text style={styles.text}>Enter your surname</Text>
           <TextInput
             style={styles.input}
-            //onChangeText={onChangeNumber}
-            //value={number}
+            onChangeText={onChangeSurname}
+            value={surname}
             placeholder="surname"
           />
           <Text style={styles.text}>Enter your mobile number</Text>
           <TextInput
             style={styles.input}
-            //onChangeText={onChangeNumber}
-            //value={number}
+            onChangeText={onChangeNumber}
+            value={number}
             keyboardType="numeric"
             placeholder="123456789"
           />
           <Text style={styles.text}>Enter your email</Text>
           <TextInput
             style={styles.input}
-            //onChangeText={onChangeNumber}
-            //value={number}
+            onChangeText={onChangeEmail}
+            value={email}
             placeholder="user@mail.com"
           />
           <Text style={styles.text}>Enter your password</Text>
           <TextInput
             style={styles.input}
-            //onChangeText={onChangeNumber}
-            //value={number}
+            onChangeText={onChangePassword}
+            value={password}
             secureTextEntry
             placeholder="**********"
           />
 
           <View style={styles.Loginbutton}>
-            <Pressable style={styles.button} onPress={() => setSignedIn(true)}>
+            <Pressable style={styles.button} onPress={handleSignup}>
               <Text style={styles.Logintext}>Sign Up</Text>
             </Pressable>
           </View>
@@ -94,7 +101,7 @@ const styles = StyleSheet.create({
     tintColor: Color.bg2,
     opacity: 0.25,
   },
-  backButtonIcon: {
+  backButton: {
     top: 35,
     left: 30,
     height: 45,
@@ -117,9 +124,9 @@ const styles = StyleSheet.create({
     height: 55,
   },
 
-  signincontainer: {
+  signupcontainer: {
     flex: 1,
-    top: height * 0.3,
+    top: height * 0.25,
     //justifyContent: "center",
     alignItems: "center",
   },
@@ -147,9 +154,9 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 
-  createaccount: {
+  title: {
     flex: 1,
-    top: height * 0.15,
+    top: height * 0.11,
     fontSize: FontSize.medium,
     fontFamily: FontFamily.interBold,
     color: Color.Black,
