@@ -16,14 +16,12 @@ import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Signin({ setSignedIn, navigation }) {
+export default function Login({ setSignedIn, navigation }) {
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   const [number, onChangeNumber] = useState("");
   const [password, onChangePassword] = useState("");
 
-  const handleLogin = async () => {
-
-  };
+  const handleLogin = async () => {};
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -44,7 +42,7 @@ export default function Signin({ setSignedIn, navigation }) {
         <Text style={styles.enterYourNumber}>Enter Your Number & Password</Text>
         <Text style={styles.welcomeBack}>Welcome Back!</Text>
 
-        <View style={styles.signincontainer}>
+        <View style={styles.logincontainer}>
           <Text style={styles.text}>Enter your mobile number</Text>
           <TextInput
             style={styles.input}
@@ -82,10 +80,7 @@ export default function Signin({ setSignedIn, navigation }) {
           />
 
           <View style={styles.Loginbutton}>
-            <Pressable
-              style={styles.button}
-              onPress={handleLogin}
-            >
+            <Pressable style={styles.button} onPress={handleLogin}>
               <Text style={styles.Logintext}>Login</Text>
             </Pressable>
             <View
@@ -153,7 +148,7 @@ const styles = StyleSheet.create({
     height: 55,
   },
 
-  signincontainer: {
+  logincontainer: {
     flex: 1,
     top: height * 0.35,
     //justifyContent: "center",

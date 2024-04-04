@@ -31,21 +31,21 @@ export default function Welcome(props) {
       <View style={styles.joinbutton}>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate("Signin")}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text style={styles.jointext}>Join Now</Text>
         </Pressable>
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   bgIcon: {
     width: 650,
     height: 715,
     position: "absolute",
-    tintColor:Color.bg,
+    tintColor: Color.bg,
   },
   logocontainer: {
     marginTop: height * 0.2,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   letsGetStarted: {
     fontSize: 75,
-    fontWeight:"900",
+    fontWeight: "900",
     fontFamily: FontFamily.interExtraBold,
     width: width * 0.9,
   },

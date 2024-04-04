@@ -4,11 +4,11 @@ import Welcomestack from "./routes/welcomestack";
 import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
-  const [signedIn, setSignedIn] = useState(false);
+  const [LogedIn, setLogedIn] = useState(false);
 
   return (
     <NavigationContainer>
-      {signedIn ? <Homestack /> : <Welcomestack setSignedIn={setSignedIn} />}
+      {LogedIn ? <Homestack /> : <Welcomestack setLogedIn={setLogedIn} />}
     </NavigationContainer>
   );
 }
