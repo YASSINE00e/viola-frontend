@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { FontSize, FontFamily, Color } from "../GlobalStyles";
+import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 
 const { width, height } = Dimensions.get("window");
 

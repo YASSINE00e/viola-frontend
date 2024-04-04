@@ -2,7 +2,7 @@ import * as React from "react";
 import { Image } from "expo-image";
 import { StyleSheet, View, Pressable, Text, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import { Color, FontFamily, FontSize } from "../global/GlobalStyles";
 
 const { width, height } = Dimensions.get("window");
 

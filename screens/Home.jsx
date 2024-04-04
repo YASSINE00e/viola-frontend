@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Image } from "expo-image";
 import { StyleSheet, Text, View } from "react-native";
-import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
+import { FontSize, FontFamily, Color, Border } from "../global/GlobalStyles";
 
 const Home = () => {
   return (

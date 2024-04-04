@@ -12,12 +12,19 @@ import {
   Keyboard,
   TouchableOpacity,
 } from "react-native";
-import { FontSize, FontFamily, Color } from "../GlobalStyles";
+import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 
 const { width, height } = Dimensions.get("window");
 
 export default function Signin({ setSignedIn, navigation }) {
   const [isSecureEntry, setIsSecureEntry] = useState(true);
+  const [number, onChangeNumber] = useState("");
+  const [password, onChangePassword] = useState("");
+
+  const handleLogin = async () => {
+
+  };
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
@@ -41,16 +48,16 @@ export default function Signin({ setSignedIn, navigation }) {
           <Text style={styles.text}>Enter your mobile number</Text>
           <TextInput
             style={styles.input}
-            //onChangeText={onChangeNumber}
-            //value={number}
+            onChangeText={onChangeNumber}
+            value={number}
             keyboardType="numeric"
             placeholder="123456789"
           />
           <Text style={styles.text}>Enter your password</Text>
           <TextInput
             style={styles.input}
-            //onChangeText={onChangeNumber}
-            //value={number}
+            onChangeText={onChangePassword}
+            value={password}
             secureTextEntry={isSecureEntry}
             placeholder="**********"
             /*
@@ -75,7 +82,10 @@ export default function Signin({ setSignedIn, navigation }) {
           />
 
           <View style={styles.Loginbutton}>
-            <Pressable style={styles.button} onPress={() => setSignedIn(true)}>
+            <Pressable
+              style={styles.button}
+              onPress={handleLogin}
+            >
               <Text style={styles.Logintext}>Login</Text>
             </Pressable>
             <View
