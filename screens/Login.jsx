@@ -10,13 +10,13 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
-  TouchableOpacity,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+import Button from "../components/customButton";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Login({ setSignedIn, navigation }) {
+export default function Login({ setLogedIn, navigation }) {
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   const [number, onChangeNumber] = useState("");
   const [password, onChangePassword] = useState("");
@@ -79,32 +79,33 @@ export default function Login({ setSignedIn, navigation }) {
              */
           />
 
-          <View style={styles.Loginbutton}>
-            <Pressable style={styles.button} onPress={handleLogin}>
-              <Text style={styles.Logintext}>Login</Text>
-            </Pressable>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: 15,
-              }}
+          <Button
+            title="Login"
+            onPress={() => setLogedIn(true)}
+            width={width}
+          />
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 15,
+            }}
+          >
+            <Text style={[styles.text, { marginLeft: -10 }]}>
+              Don’t have an account?
+            </Text>
+            <Pressable
+              style={styles.text}
+              onPress={() => navigation.navigate("Signup")}
             >
-              <Text style={[styles.text, { paddingLeft: 20 }]}>
-                Don’t have an account?
-              </Text>
-              <Pressable
-                style={styles.text}
-                onPress={() => navigation.navigate("Signup")}
+              <Text
+                style={[styles.text, { fontWeight: "bold", marginLeft: -30 }]}
               >
-                <Text
-                  style={[styles.text, { fontWeight: "bold", marginLeft: -30 }]}
-                >
-                  Sign Up
-                </Text>
-              </Pressable>
-            </View>
+                Sign Up
+              </Text>
+            </Pressable>
           </View>
+          <View style={styles.Loginbutton}></View>
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>
@@ -131,21 +132,6 @@ const styles = StyleSheet.create({
     height: 45,
     width: 45,
     position: "absolute",
-  },
-  Logintext: {
-    color: Color.White,
-    textAlign: "center",
-    padding: 12,
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  button: {
-    backgroundColor: Color.Black,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: Color.Black,
-    width: width * 0.8,
-    height: 55,
   },
 
   logincontainer: {

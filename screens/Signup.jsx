@@ -12,6 +12,7 @@ import {
   Keyboard,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+import Button from "../components/customButton";
 
 const { width, height } = Dimensions.get("window");
 
@@ -79,12 +80,7 @@ Account :)`}</Text>
             secureTextEntry
             placeholder="**********"
           />
-
-          <View style={styles.Loginbutton}>
-            <Pressable style={styles.button} onPress={handleSignup}>
-              <Text style={styles.Logintext}>Sign Up</Text>
-            </Pressable>
-          </View>
+          <Button title="Sign Up" onPress={handleSignup} width={width} />
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>
@@ -107,21 +103,6 @@ const styles = StyleSheet.create({
     height: 45,
     width: 45,
     position: "absolute",
-  },
-  Logintext: {
-    color: Color.White,
-    textAlign: "center",
-    padding: 12,
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  button: {
-    backgroundColor: Color.Black,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: Color.Black,
-    width: width * 0.8,
-    height: 55,
   },
 
   signupcontainer: {

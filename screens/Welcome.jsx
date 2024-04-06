@@ -3,6 +3,8 @@ import { Image } from "expo-image";
 import { StyleSheet, View, Pressable, Text, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontFamily, FontSize } from "../global/GlobalStyles";
+import Button from "../components/customButton";
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -29,12 +31,13 @@ export default function Welcome(props) {
       </View>
 
       <View style={styles.joinbutton}>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text style={styles.jointext}>Join Now</Text>
-        </Pressable>
+      <Button
+            title="Join Now"
+            onPress={() =>navigation.navigate("Login")}
+            width={width}
+
+          />
+
       </View>
     </View>
   );
