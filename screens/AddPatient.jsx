@@ -14,6 +14,9 @@ import {
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import Button from "../components/customButton";
 import Input from "../components/customInput";
+import Bloodtype from "../components/bloodtypeDropdown";
+import Age from "../components/ageDropdown";
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -57,19 +60,10 @@ export default function Signup({ setSignedIn, navigation }) {
             value={surname}
             placeholder="surname"
           />
-          <Input
-            title="Enter your patient age"
-            onChangeText={onChangeAge}
-            value={age}
-            keyboardType="numeric"
-            placeholder="75"
-          />
-          <Input
-            title="Enter your patient bloodtype"
-            onChangeText={onChangeBloodtype}
-            value={bloodtype}
-            placeholder="A+"
-          />
+          <View style={{ flexDirection: "row" }}>
+            <Bloodtype />
+            <Age />
+          </View>
           <Input
             title="Enter your patient house location"
             onChangeText={onChangeHL}
@@ -85,6 +79,7 @@ export default function Signup({ setSignedIn, navigation }) {
             placeholder="65kg"
             keyboardType="numeric"
           />
+
           <Button
             title="Add Patient"
             onPress={handleAddPatient}
