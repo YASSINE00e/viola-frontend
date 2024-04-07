@@ -14,9 +14,7 @@ const data = [
   { label: "AB positive", value: "AB+" },
 ];
 
-export default function bloodtypeDropdowns() {
-  const [value, setValue] = useState(null);
-
+export default function bloodtypeDropdowns(props) {
   return (
     <Dropdown
       style={styles.dropdown}
@@ -28,9 +26,9 @@ export default function bloodtypeDropdowns() {
       labelField="label"
       valueField="value"
       placeholder="Bloodtype"
-      value={value}
+      value={props.value}
       onChange={(item) => {
-        setValue(item.value);
+        props.onChange(item.value);
       }}
     />
   );

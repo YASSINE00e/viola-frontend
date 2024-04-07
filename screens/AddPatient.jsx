@@ -17,14 +17,13 @@ import Input from "../components/customInput";
 import Bloodtype from "../components/bloodtypeDropdown";
 import Age from "../components/ageDropdown";
 
-
 const { width, height } = Dimensions.get("window");
 
 export default function Signup({ setSignedIn, navigation }) {
   const [name, onChangeName] = useState("");
   const [surname, onChangeSurname] = useState("");
-  const [age, onChangeAge] = useState("");
-  const [bloodtype, onChangeBloodtype] = useState("");
+  const [age, onChangeAge] = useState(null);
+  const [bloodtype, onChangeBloodtype] = useState(null);
   const [houselocation, onChangeHL] = useState("");
   const [wieght, onChangeWieght] = useState("");
 
@@ -61,8 +60,8 @@ export default function Signup({ setSignedIn, navigation }) {
             placeholder="surname"
           />
           <View style={{ flexDirection: "row" }}>
-            <Bloodtype />
-            <Age />
+            <Bloodtype value={bloodtype} onChange={onChangeBloodtype} />
+            <Age value={age} onChange={onChangeAge} />
           </View>
           <Input
             title="Enter your patient house location"

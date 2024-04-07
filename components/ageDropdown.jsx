@@ -141,9 +141,7 @@ const data = [
   { label: "135", value: "135" },
 ];
 
-export default function ageDropdown() {
-  const [value, setValue] = useState(null);
-
+export default function ageDropdown(props) {
   return (
     <Dropdown
       style={styles.dropdown}
@@ -155,9 +153,9 @@ export default function ageDropdown() {
       labelField="label"
       valueField="value"
       placeholder="Age"
-      value={value}
+      value={props.value}
       onChange={(item) => {
-        setValue(item.value);
+        props.onChange(item.value);
       }}
     />
   );
