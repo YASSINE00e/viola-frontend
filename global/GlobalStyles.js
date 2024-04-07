@@ -13,6 +13,7 @@ export const FontSize = {
   medium: 32,
   sm: 24,
   small: 18,
+  xsmall : 14,
 };
 /* Colors */
 export const Color = {
@@ -21,4 +22,6 @@ export const Color = {
   bg2: "#f10055",
   White: "#fff",
   Black: "#000",
+  border: "#D1D1D1",
+  text:"#2A2A2A",
 };

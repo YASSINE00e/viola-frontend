@@ -7,12 +7,13 @@ import {
   SafeAreaView,
   Pressable,
   Dimensions,
-  TextInput,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+
 import Button from "../components/customButton";
+import Input from "../components/customInput";
 
 const { width, height } = Dimensions.get("window");
 
@@ -43,40 +44,19 @@ export default function Login({ setLogedIn, navigation }) {
         <Text style={styles.welcomeBack}>Welcome Back!</Text>
 
         <View style={styles.logincontainer}>
-          <Text style={styles.text}>Enter your mobile number</Text>
-          <TextInput
-            style={styles.input}
+          <Input
+            title="Enter your mobile number"
             onChangeText={onChangeNumber}
             value={number}
-            keyboardType="numeric"
             placeholder="123456789"
+            keyboardType="numeric"
           />
-          <Text style={styles.text}>Enter your password</Text>
-          <TextInput
-            style={styles.input}
+          <Input
+            title="Enter your password"
             onChangeText={onChangePassword}
             value={password}
             secureTextEntry={isSecureEntry}
             placeholder="**********"
-            /*
-            icon={
-              <TouchableOpacity
-                style={styles.iconContainer}
-                onPress={() => {
-                  setIsSecureEntry(!isSecureEntry);
-                }}
-              >
-                <Image
-                  style={styles.icon}
-                  source={
-                    isSecureEntry
-                      ? require("../assets/show.png")
-                      : require("../assets/hide.png")
-                  }
-                />
-              </TouchableOpacity>
-            }
-             */
           />
 
           <Button
@@ -84,28 +64,13 @@ export default function Login({ setLogedIn, navigation }) {
             onPress={() => setLogedIn(true)}
             width={width}
           />
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              marginTop: 15,
-            }}
-          >
-            <Text style={[styles.text, { marginLeft: -10 }]}>
-              Don’t have an account?
-            </Text>
-            <Pressable
-              style={styles.text}
-              onPress={() => navigation.navigate("Signup")}
-            >
-              <Text
-                style={[styles.text, { fontWeight: "bold", marginLeft: -30 }]}
-              >
-                Sign Up
-              </Text>
+
+          <View style={styles.text}>
+            <Text>Don’t have an account?</Text>
+            <Pressable onPress={() => navigation.navigate("Signup")}>
+              <Text style={{ fontWeight: "bold", marginLeft: 5 }}>Sign Up</Text>
             </Pressable>
           </View>
-          <View style={styles.Loginbutton}></View>
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>
@@ -121,43 +86,24 @@ const styles = StyleSheet.create({
     position: "absolute",
     tintColor: Color.bg1,
   },
-  icon: {
-    position: "absolute",
-    height: 20,
-    width: 20,
-  },
   backButtonIcon: {
-    top: 35,
+    top: 45,
     left: 30,
-    height: 45,
-    width: 45,
+    height: 40,
+    width: 40,
     position: "absolute",
   },
 
   logincontainer: {
-    flex: 1,
     top: height * 0.35,
-    //justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "center",
   },
   text: {
-    color: "#2A2A2A",
-    fontSize: 14,
-    marginLeft: 40,
-    marginBottom: 10,
-    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+    alignSelf: "center",
   },
-  input: {
-    borderRadius: 20,
-    borderWidth: 1,
-    backgroundColor: Color.White,
-    borderColor: "#D1D1D1",
-    width: "80%",
-    padding: 10,
-    marginBottom: 20,
-    height: 55,
-  },
-
   container: {
     backgroundColor: Color.White,
     flex: 1,
@@ -165,7 +111,6 @@ const styles = StyleSheet.create({
   },
 
   enterYourNumber: {
-    flex: 1,
     top: height * 0.2,
     fontSize: FontSize.small,
     fontWeight: "500",
@@ -176,7 +121,6 @@ const styles = StyleSheet.create({
     left: 40,
   },
   welcomeBack: {
-    flex: 1,
     top: height * 0.15,
     fontSize: FontSize.medium,
     fontFamily: FontFamily.interBold,

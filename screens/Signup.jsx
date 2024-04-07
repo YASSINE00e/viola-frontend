@@ -7,12 +7,12 @@ import {
   SafeAreaView,
   Pressable,
   Dimensions,
-  TextInput,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import Button from "../components/customButton";
+import Input from "../components/customInput";
 
 const { width, height } = Dimensions.get("window");
 
@@ -43,38 +43,33 @@ export default function Signup({ setSignedIn, navigation }) {
 Account :)`}</Text>
 
         <View style={styles.signupcontainer}>
-          <Text style={styles.text}>Enter your name</Text>
-          <TextInput
-            style={styles.input}
+          <Input
+            title="Enter your name"
             onChangeText={onChangeName}
             value={name}
             placeholder="name"
           />
-          <Text style={styles.text}>Enter your surname</Text>
-          <TextInput
-            style={styles.input}
+          <Input
+            title="Enter your surname"
             onChangeText={onChangeSurname}
             value={surname}
             placeholder="surname"
           />
-          <Text style={styles.text}>Enter your mobile number</Text>
-          <TextInput
-            style={styles.input}
+          <Input
+            title="Enter your mobile number"
             onChangeText={onChangeNumber}
             value={number}
             keyboardType="numeric"
             placeholder="123456789"
           />
-          <Text style={styles.text}>Enter your email</Text>
-          <TextInput
-            style={styles.input}
+          <Input
+            title="Enter your email"
             onChangeText={onChangeEmail}
             value={email}
             placeholder="user@mail.com"
           />
-          <Text style={styles.text}>Enter your password</Text>
-          <TextInput
-            style={styles.input}
+          <Input
+            title="Enter your password"
             onChangeText={onChangePassword}
             value={password}
             secureTextEntry
@@ -98,35 +93,16 @@ const styles = StyleSheet.create({
     opacity: 0.25,
   },
   backButton: {
-    top: 35,
+    top: 45,
     left: 30,
-    height: 45,
-    width: 45,
+    height: 40,
+    width: 40,
     position: "absolute",
   },
 
   signupcontainer: {
-    flex: 1,
     top: height * 0.25,
-    //justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    color: "#2A2A2A",
-    fontSize: 14,
-    marginLeft: 40,
-    marginBottom: 10,
-    alignSelf: "flex-start",
-  },
-  input: {
-    borderRadius: 20,
-    borderWidth: 1,
-    backgroundColor: Color.White,
-    borderColor: "#D1D1D1",
-    width: "80%",
-    padding: 10,
-    marginBottom: 20,
-    height: 55,
+    alignSelf: "center",
   },
 
   container: {
