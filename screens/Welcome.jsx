@@ -1,10 +1,8 @@
 import * as React from "react";
-import { Image } from "expo-image";
-import { StyleSheet, View, Pressable, Text, Dimensions } from "react-native";
+import { StyleSheet, View, Text, Dimensions, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontFamily, FontSize } from "../global/GlobalStyles";
 import Button from "../components/customButton";
-
 
 const { width, height } = Dimensions.get("window");
 
@@ -15,13 +13,13 @@ export default function Welcome(props) {
     <View style={styles.container}>
       <Image
         style={styles.bgIcon}
-        contentFit="cover"
+        resizeMode="cover"
         source={require("../assets/bg.png")}
       />
       <View style={styles.logocontainer}>
         <Image
           style={styles.logo}
-          contentFit="cover"
+          resizeMode="cover"
           source={require("../assets/logo.png")}
         />
       </View>
@@ -31,13 +29,11 @@ export default function Welcome(props) {
       </View>
 
       <View style={styles.joinbutton}>
-      <Button
-            title="Join Now"
-            onPress={() =>navigation.navigate("Login")}
-            width={width}
-
-          />
-
+        <Button
+          title="Join Now"
+          onPress={() => navigation.navigate("Login")}
+          width={width}
+        />
       </View>
     </View>
   );

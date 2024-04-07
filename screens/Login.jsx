@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Image } from "expo-image";
 import {
   StyleSheet,
   Text,
@@ -9,6 +8,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   Keyboard,
+  Image,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 
@@ -29,13 +29,13 @@ export default function Login({ setLogedIn, navigation }) {
       <SafeAreaView style={styles.container}>
         <Image
           style={styles.bg}
-          contentFit="cover"
+          resizeMode="cover"
           source={require("../assets/bg.png")}
         />
         <Pressable onPress={() => navigation.navigate("Welcome")}>
           <Image
             style={styles.backButtonIcon}
-            contentFit="cover"
+            resizeMode="cover"
             source={require("../assets/back-button.png")}
           />
         </Pressable>
