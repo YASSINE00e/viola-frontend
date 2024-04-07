@@ -25,7 +25,7 @@ export default function Signup({ setSignedIn, navigation }) {
   const [age, onChangeAge] = useState(null);
   const [bloodtype, onChangeBloodtype] = useState(null);
   const [houselocation, onChangeHL] = useState("");
-  const [wieght, onChangeWieght] = useState("");
+  const [weight, onChangeWeight] = useState("");
 
   const handleAddPatient = async () => {};
   return (
@@ -70,9 +70,9 @@ export default function Signup({ setSignedIn, navigation }) {
             placeholder="R6, Monastir"
           />
           <Input
-            title="Enter your patient wieght"
-            onChangeText={onChangeWieght}
-            value={wieght}
+            title="Enter your patient weight"
+            onChangeText={onChangeWeight}
+            value={weight}
             placeholder="65kg"
             keyboardType="numeric"
           />
