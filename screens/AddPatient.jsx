@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Image } from "expo-image";
 import {
   StyleSheet,
   Text,
@@ -7,55 +6,115 @@ import {
   SafeAreaView,
   Pressable,
   Dimensions,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ScrollView,
+  Image,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+import Button from "../components/customButton";
+import Input from "../components/customInput";
 
 const { width, height } = Dimensions.get("window");
 
-export default function AddPatient({ navigation }) {
+export default function Signup({ setSignedIn, navigation }) {
+  const [name, onChangeName] = useState("");
+  const [surname, onChangeSurname] = useState("");
+  const [number, onChangeNumber] = useState("");
+  const [email, onChangeEmail] = useState("");
+  const [password, onChangePassword] = useState("");
+
+  const handleAddPatient = async () => {};
   return (
-    <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.bg}
-        contentFit="cover"
-        source={require("../assets/bg.png")}
-      />
-
-      <Pressable onPress={() => navigation.navigate("Home")}>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <SafeAreaView style={styles.container}>
         <Image
-          style={styles.backButtonIcon}
-          contentFit="cover"
-          source={require("../assets/back-button.png")}
+          style={styles.bg}
+          resizeMode="cover"
+          source={require("../assets/bg.png")}
         />
-      </Pressable>
+        <Pressable onPress={() => navigation.navigate("Home")}>
+          <Image
+            style={styles.backButton}
+            resizeMode="cover"
+            source={require("../assets/back-button.png")}
+          />
+        </Pressable>
 
-      <View style={styles.view}>
-        <Text style={styles.text}>AddPatient</Text>
-      </View>
-    </SafeAreaView>
+        <Text style={styles.title}>{`Add a new patient.`}</Text>
+
+        <ScrollView style={styles.signupcontainer}>
+          <Input
+            title="Enter your patient name"
+            onChangeText={onChangeName}
+            value={name}
+            placeholder="name"
+          />
+          <Input
+            title="Enter your patient surname"
+            onChangeText={onChangeSurname}
+            value={surname}
+            placeholder="surname"
+          />
+          <Input
+            title="Enter your patient age"
+            onChangeText={onChangeNumber}
+            value={number}
+            keyboardType="numeric"
+            placeholder="75"
+          />
+          <Input
+            title="Enter your patient bloodtype"
+            onChangeText={onChangeEmail}
+            value={email}
+            placeholder="A+"
+          />
+          <Input
+            title="Enter your patient house location"
+            onChangeText={onChangePassword}
+            value={password}
+            secureTextEntry
+            placeholder="R6, Monastir"
+          />
+          <Input
+            title="Enter your patient wieght"
+            onChangeText={onChangePassword}
+            value={password}
+            secureTextEntry
+            placeholder="65kg"
+          />
+          <Button
+            title="Add Patient"
+            onPress={handleAddPatient}
+            width={width}
+          />
+        </ScrollView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   bg: {
-    width: 650,
+    top: height * 0.15,
+    width: 600,
     height: 715,
     position: "absolute",
-    tintColor: Color.bg,
-    opacity: 0.5,
+    alignSelf: "center",
+    tintColor: Color.bg2,
+    opacity: 0.25,
   },
-  backButtonIcon: {
-    top: 35,
+  backButton: {
+    top: 45,
     left: 30,
-    height: 45,
-    width: 45,
+    height: 40,
+    width: 40,
     position: "absolute",
   },
 
-  view: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  signupcontainer: {
+    top: height * 0.25,
+    alignSelf: "center",
   },
 
   container: {
@@ -63,11 +122,16 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
-  text: {
+
+  title: {
+    flex: 1,
+    top: height * 0.11,
     fontSize: FontSize.medium,
     fontFamily: FontFamily.interBold,
     color: Color.Black,
-    width: width * 0.7,
+    width: width * 0.6,
     fontWeight: "900",
+    position: "absolute",
+    left: 38,
   },
 });

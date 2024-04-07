@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image } from "expo-image";
+
 import {
   StyleSheet,
   Text,
@@ -7,24 +7,28 @@ import {
   SafeAreaView,
   Pressable,
   Dimensions,
+  Image,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+
+import Button from "../components/customButton";
 
 const { width, height } = Dimensions.get("window");
 
 export default function Home({ navigation }) {
+  const [hasPatient, sethasPatient] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
       <Image
         style={styles.bg}
-        contentFit="cover"
+        resizeMode="cover"
         source={require("../assets/bg.png")}
       />
 
       <Pressable onPress={() => navigation.navigate("Settings")}>
         <Image
           style={styles.SettingsIcon}
-          contentFit="cover"
+          resizeMode="cover"
           source={require("../assets/accounticon.png")}
         />
       </Pressable>
@@ -32,22 +36,24 @@ export default function Home({ navigation }) {
       <Pressable onPress={() => navigation.navigate("AddPatient")}>
         <Image
           style={styles.AddIcon}
-          contentFit="cover"
+          resizeMode="cover"
           source={require("../assets/addicon.png")}
         />
       </Pressable>
+      {!hasPatient && (
+        <View style={styles.nopatientfound}>
+          <Text style={styles.nopatient}>No patient found!</Text>
+          <Text style={styles.addonenow}>
+            Add one now, and start tracking them.
+          </Text>
 
-      <View style={styles.nopatientfound}>
-        <Text style={styles.nopatient}>No patient found!</Text>
-        <Text style={styles.addonenow}>Add one now.</Text>
-
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("AddPatient")}
-        >
-          <Text style={styles.Addtext}>Get started</Text>
-        </Pressable>
-      </View>
+          <Button
+            title="Get started"
+            onPress={() => navigation.navigate("AddPatient")}
+            style={{ width: width * 0.5 }}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 }
@@ -61,17 +67,17 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   SettingsIcon: {
-    top: 50,
+    top: 45,
     left: 30,
-    height: 45,
-    width: 45,
+    height: 40,
+    width: 40,
     position: "absolute",
   },
   AddIcon: {
-    top: 50,
+    top: 45,
     right: 30,
-    height: 45,
-    width: 45,
+    height: 40,
+    width: 40,
     position: "absolute",
   },
   Addtext: {
@@ -107,14 +113,13 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontFamily: FontFamily.interSemiBold,
     color: "#565656",
-    width: width * 0.7,
+    paddingTop: 5,
     paddingBottom: 10,
   },
   nopatient: {
-    fontSize: FontSize.medium,
+    fontSize: FontSize.sm,
     fontFamily: FontFamily.interBold,
     color: Color.Black,
-    width: width * 0.7,
     fontWeight: "900",
   },
 });
