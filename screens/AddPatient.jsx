@@ -20,9 +20,10 @@ const { width, height } = Dimensions.get("window");
 export default function Signup({ setSignedIn, navigation }) {
   const [name, onChangeName] = useState("");
   const [surname, onChangeSurname] = useState("");
-  const [number, onChangeNumber] = useState("");
-  const [email, onChangeEmail] = useState("");
-  const [password, onChangePassword] = useState("");
+  const [age, onChangeAge] = useState("");
+  const [bloodtype, onChangeBloodtype] = useState("");
+  const [houselocation, onChangeHL] = useState("");
+  const [wieght, onChangeWieght] = useState("");
 
   const handleAddPatient = async () => {};
   return (
@@ -58,30 +59,31 @@ export default function Signup({ setSignedIn, navigation }) {
           />
           <Input
             title="Enter your patient age"
-            onChangeText={onChangeNumber}
-            value={number}
+            onChangeText={onChangeAge}
+            value={age}
             keyboardType="numeric"
             placeholder="75"
           />
           <Input
             title="Enter your patient bloodtype"
-            onChangeText={onChangeEmail}
-            value={email}
+            onChangeText={onChangeBloodtype}
+            value={bloodtype}
             placeholder="A+"
           />
           <Input
             title="Enter your patient house location"
-            onChangeText={onChangePassword}
-            value={password}
+            onChangeText={onChangeHL}
+            value={houselocation}
             secureTextEntry
             placeholder="R6, Monastir"
           />
           <Input
             title="Enter your patient wieght"
-            onChangeText={onChangePassword}
-            value={password}
+            onChangeText={onChangeWieght}
+            value={wieght}
             secureTextEntry
             placeholder="65kg"
+            keyboardType="numeric"
           />
           <Button
             title="Add Patient"
