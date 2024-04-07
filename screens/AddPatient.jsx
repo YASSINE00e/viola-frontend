@@ -67,14 +67,12 @@ export default function Signup({ setSignedIn, navigation }) {
             title="Enter your patient house location"
             onChangeText={onChangeHL}
             value={houselocation}
-            secureTextEntry
             placeholder="R6, Monastir"
           />
           <Input
             title="Enter your patient wieght"
             onChangeText={onChangeWieght}
             value={wieght}
-            secureTextEntry
             placeholder="65kg"
             keyboardType="numeric"
           />
