@@ -20,6 +20,14 @@ export default function customInput(props) {
       marginBottom: 20,
       height: 55,
       ...props.inputStyle,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.5,
+      elevation: 2,
     },
     container: {},
   });
