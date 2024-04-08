@@ -4,7 +4,7 @@ import {
   Text,
   View,
   SafeAreaView,
-  Pressable,
+  TouchableOpacity,
   Dimensions,
   TouchableWithoutFeedback,
   Keyboard,
@@ -32,13 +32,13 @@ export default function Signup({ setSignedIn, navigation }) {
           resizeMode="cover"
           source={require("../assets/bg.png")}
         />
-        <Pressable onPress={() => navigation.navigate("Welcome")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
           <Image
             style={styles.backButton}
             resizeMode="cover"
             source={require("../assets/back-button.png")}
           />
-        </Pressable>
+        </TouchableOpacity>
         <Text style={styles.title}>{`Create
 Account :)`}</Text>
 

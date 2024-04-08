@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, Pressable } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 
@@ -32,8 +32,8 @@ export default function CustomButton(props) {
   });
 
   return (
-    <Pressable style={styles.button} onPress={props.onPress}>
+    <TouchableOpacity style={styles.button} onPress={props.onPress}>
       <Text style={styles.buttonTitle}>{props.title}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 }

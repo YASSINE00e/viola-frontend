@@ -4,6 +4,7 @@ import {
   Text,
   View,
   SafeAreaView,
+  TouchableOpacity,
   Pressable,
   Dimensions,
   TouchableWithoutFeedback,
@@ -32,13 +33,13 @@ export default function Login({ setLogedIn, navigation }) {
           resizeMode="cover"
           source={require("../assets/bg.png")}
         />
-        <Pressable onPress={() => navigation.navigate("Welcome")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
           <Image
             style={styles.backButtonIcon}
             resizeMode="cover"
             source={require("../assets/back-button.png")}
           />
-        </Pressable>
+        </TouchableOpacity>
 
         <Text style={styles.enterYourNumber}>Enter Your Number & Password</Text>
         <Text style={styles.welcomeBack}>Welcome Back!</Text>

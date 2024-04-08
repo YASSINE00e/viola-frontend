@@ -4,7 +4,7 @@ import {
   Text,
   View,
   SafeAreaView,
-  Pressable,
+  TouchableOpacity,
   Dimensions,
   Image,
 } from "react-native";
@@ -24,21 +24,21 @@ export default function Home({ navigation }) {
         source={require("../assets/bg.png")}
       />
 
-      <Pressable onPress={() => navigation.navigate("Settings")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
         <Image
           style={styles.SettingsIcon}
           resizeMode="cover"
           source={require("../assets/accounticon.png")}
         />
-      </Pressable>
+      </TouchableOpacity>
 
-      <Pressable onPress={() => navigation.navigate("AddPatient")}>
+      <TouchableOpacity onPress={() => navigation.navigate("AddPatient")}>
         <Image
           style={styles.AddIcon}
           resizeMode="cover"
           source={require("../assets/addicon.png")}
         />
-      </Pressable>
+      </TouchableOpacity>
       {!hasPatient && (
         <View style={styles.nopatientfound}>
           <Text style={styles.nopatient}>No patient found!</Text>

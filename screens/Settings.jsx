@@ -4,7 +4,7 @@ import {
   Text,
   View,
   SafeAreaView,
-  Pressable,
+  TouchableOpacity,
   Dimensions,
   Image
 } from "react-native";
@@ -21,13 +21,13 @@ export default function Settings({ navigation }) {
         source={require("../assets/bg.png")}
       />
 
-      <Pressable onPress={() => navigation.navigate("Home")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <Image
           style={styles.backButtonIcon}
           resizeMode="cover"
           source={require("../assets/back-button.png")}
         />
-      </Pressable>
+      </TouchableOpacity>
 
       <View style={styles.view}>
         <Text style={styles.text}>Settings</Text>
