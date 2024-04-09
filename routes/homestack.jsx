@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
 import Settings from "../screens/Settings";
 import AddPatient from "../screens/AddPatient";
+import Map from "../screens/Map";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -17,6 +18,7 @@ export default function App() {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="AddPatient" component={AddPatient} />
+      <Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   );
 }
