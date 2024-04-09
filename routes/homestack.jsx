@@ -5,6 +5,8 @@ import Settings from "../screens/Settings";
 import AddPatient from "../screens/AddPatient";
 import Map from "../screens/Map";
 
+import Footer from "../components/customFooter";
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -19,6 +21,7 @@ export default function App() {
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="AddPatient" component={AddPatient} />
       <Stack.Screen name="Map" component={Map} />
+      <Stack.Screen name="Footer" component={Footer} />
     </Stack.Navigator>
   );
 }

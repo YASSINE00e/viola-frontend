@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import IconButton from "../components/customIconButton";
+import Footer from "../components/customFooter";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 
@@ -55,6 +56,7 @@ export default function Signup(props) {
           onPress={() => props.navigation.navigate("Home")}
           source={require("../assets/back-button.png")}
         />
+        <Footer navigation={props.navigation} />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
