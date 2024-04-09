@@ -15,6 +15,7 @@ import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 
 import Button from "../components/customButton";
 import Input from "../components/customInput";
+import IconButton from "../components/customIconButton";
 
 const { width, height } = Dimensions.get("window");
 
@@ -33,13 +34,10 @@ export default function Login({ setLogedIn, navigation }) {
           resizeMode="cover"
           source={require("../assets/bg.png")}
         />
-        <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
-          <Image
-            style={styles.backButtonIcon}
-            resizeMode="cover"
-            source={require("../assets/back-button.png")}
-          />
-        </TouchableOpacity>
+        <IconButton
+          onPress={() => navigation.navigate("Welcome")}
+          source={require("../assets/back-button.png")}
+        />
 
         <Text style={styles.enterYourNumber}>Enter Your Number & Password</Text>
         <Text style={styles.welcomeBack}>Welcome Back!</Text>

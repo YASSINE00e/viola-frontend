@@ -9,6 +9,7 @@ import {
   Image,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+import IconButton from "../components/customIconButton";
 
 import Button from "../components/customButton";
 
@@ -24,21 +25,16 @@ export default function Home({ navigation }) {
         source={require("../assets/bg.png")}
       />
 
-      <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-        <Image
-          style={styles.SettingsIcon}
-          resizeMode="cover"
-          source={require("../assets/accounticon.png")}
-        />
-      </TouchableOpacity>
+      <IconButton
+        onPress={() => navigation.navigate("Settings")}
+        source={require("../assets/accounticon.png")}
+      />
+      <IconButton
+        onPress={() => navigation.navigate("AddPatient")}
+        source={require("../assets/addicon.png")}
+        style={{ right: 30, left: null }}
+      />
 
-      <TouchableOpacity onPress={() => navigation.navigate("AddPatient")}>
-        <Image
-          style={styles.AddIcon}
-          resizeMode="cover"
-          source={require("../assets/addicon.png")}
-        />
-      </TouchableOpacity>
       {!hasPatient && (
         <View style={styles.nopatientfound}>
           <Text style={styles.nopatient}>No patient found!</Text>
@@ -48,7 +44,7 @@ export default function Home({ navigation }) {
 
           <Button
             title="Get started"
-            onPress={() => navigation.navigate("AddPatient")}
+            onPress={() => navigation.navigate("Map")}
             style={{ width: width * 0.5 }}
           />
         </View>

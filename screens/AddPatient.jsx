@@ -16,6 +16,7 @@ import Button from "../components/customButton";
 import Input from "../components/customInput";
 import Bloodtype from "../components/bloodtypeDropdown";
 import Age from "../components/ageDropdown";
+import IconButton from "../components/customIconButton";
 
 const { width, height } = Dimensions.get("window");
 
@@ -36,13 +37,10 @@ export default function Signup({ setSignedIn, navigation }) {
           resizeMode="cover"
           source={require("../assets/bg.png")}
         />
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Image
-            style={styles.backButton}
-            resizeMode="cover"
-            source={require("../assets/back-button.png")}
-          />
-        </TouchableOpacity>
+        <IconButton
+          onPress={() => navigation.navigate("Home")}
+          source={require("../assets/back-button.png")}
+        />
 
         <Text style={styles.title}>{`Add a new patient.`}</Text>
 

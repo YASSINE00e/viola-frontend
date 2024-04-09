@@ -13,6 +13,8 @@ import {
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import Button from "../components/customButton";
 import Input from "../components/customInput";
+import IconButton from "../components/customIconButton";
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -32,13 +34,10 @@ export default function Signup({ setSignedIn, navigation }) {
           resizeMode="cover"
           source={require("../assets/bg.png")}
         />
-        <TouchableOpacity onPress={() => navigation.navigate("Welcome")}>
-          <Image
-            style={styles.backButton}
-            resizeMode="cover"
-            source={require("../assets/back-button.png")}
-          />
-        </TouchableOpacity>
+        <IconButton
+          onPress={() => navigation.navigate("Welcome")}
+          source={require("../assets/back-button.png")}
+        />
         <Text style={styles.title}>{`Create
 Account :)`}</Text>
 
