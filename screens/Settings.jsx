@@ -25,7 +25,7 @@ export default function Settings({ navigation }) {
         <Image
           style={styles.backButtonIcon}
           resizeMode="cover"
-          source={require("../assets/back-button.png")}
+          source={require("../assets/back.png")}
         />
       </TouchableOpacity>
 

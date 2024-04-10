@@ -14,6 +14,7 @@ import {
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import IconButton from "../components/customIconButton";
 import Footer from "../components/customFooter";
+import Header from "../components/customHeader";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 
@@ -26,11 +27,11 @@ export default function Signup(props) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.bg}
-        resizeMode="cover"
-        source={require("../assets/bg.png")}
-      />
+        <Image
+          style={styles.bg}
+          resizeMode="cover"
+          source={require("../assets/bg.png")}
+        />
         <View style={styles.mapcontainer}>
           <MapView
             style={styles.map}
@@ -53,10 +54,15 @@ export default function Signup(props) {
             )}
           </MapView>
         </View>
-        <IconButton
-          onPress={() => props.navigation.navigate("Home")}
-          source={require("../assets/back-button.png")}
-        />
+        <Header
+          navigation={props.navigation}
+          title="Track you patient."
+          onPressright={() => alert("help")}
+          right={require("../assets/dots.png")}
+          onPressleft={() => props.navigation.navigate("Home")}
+          left={require("../assets/back.png")}
+        ></Header>
+
         <Footer navigation={props.navigation} />
       </SafeAreaView>
     </TouchableWithoutFeedback>
@@ -92,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.White,
     flex: 1,
     width: "100%",
-    justifyContent: 'center', // Add this
-    alignItems: 'center', // Add this
+    justifyContent: "center", // Add this
+    alignItems: "center", // Add this
   },
 });

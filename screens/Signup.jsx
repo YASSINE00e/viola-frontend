@@ -15,7 +15,6 @@ import Button from "../components/customButton";
 import Input from "../components/customInput";
 import IconButton from "../components/customIconButton";
 
-
 const { width, height } = Dimensions.get("window");
 
 export default function Signup({ setSignedIn, navigation }) {
@@ -36,7 +35,7 @@ export default function Signup({ setSignedIn, navigation }) {
         />
         <IconButton
           onPress={() => navigation.navigate("Welcome")}
-          source={require("../assets/back-button.png")}
+          source={require("../assets/back.png")}
         />
         <Text style={styles.title}>{`Create
 Account :)`}</Text>

@@ -39,7 +39,7 @@ export default function Signup({ setSignedIn, navigation }) {
         />
         <IconButton
           onPress={() => navigation.navigate("Home")}
-          source={require("../assets/back-button.png")}
+          source={require("../assets/back.png")}
         />
 
         <Text style={styles.title}>{`Add a new patient.`}</Text>

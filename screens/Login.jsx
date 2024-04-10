@@ -36,7 +36,7 @@ export default function Login({ setLogedIn, navigation }) {
         />
         <IconButton
           onPress={() => navigation.navigate("Welcome")}
-          source={require("../assets/back-button.png")}
+          source={require("../assets/back.png")}
         />
 
         <Text style={styles.enterYourNumber}>Enter Your Number & Password</Text>
