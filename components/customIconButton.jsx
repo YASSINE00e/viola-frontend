@@ -1,5 +1,6 @@
 import React from "react";
-import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, Image, StyleSheet, Dimensions } from "react-native";
+const { width, height } = Dimensions.get("window");
 
 export default function IconButton(props) {
   const styles = StyleSheet.create({
@@ -11,8 +12,8 @@ export default function IconButton(props) {
     },
 
     icon: {
-      height: 40,
-      width: 40,
+      height: height * 0.04,
+      width: width * 0.09,
     },
   });
   return (
