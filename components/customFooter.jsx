@@ -57,6 +57,44 @@ export default function Footer({ navigation }) {
         )}
       </TouchableOpacity>
 
+
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Analysis")}
+      >
+        {route.name == "Analysis" ? (
+          <Image
+            source={require("../assets/heartselected.png")}
+            style={styles.icon}
+          />
+        ) : (
+          <Image
+            source={require("../assets/heart.png")}
+            style={styles.icon}
+          />
+        )}
+      </TouchableOpacity>
+
+
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("EditPatient")}
+      >
+        {route.name == "EditPatient" ? (
+          <Image
+            source={require("../assets/manageaccountsselected.png")}
+            style={styles.icon}
+          />
+        ) : (
+          <Image
+            source={require("../assets/manageaccounts.png")}
+            style={styles.icon}
+          />
+        )}
+      </TouchableOpacity>
+
     </View>
   );
 }

@@ -10,9 +10,11 @@ import {
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import Header from "../components/customHeader";
+import Footer from "../components/customFooter";
+
 const { width, height } = Dimensions.get("window");
 
-export default function Settings(props) {
+export default function Analysis(props) {
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -24,16 +26,18 @@ export default function Settings(props) {
 
       <Header
           navigation={props.navigation}
-          title="Settings."
-          onPressright={() => alert("Settings")}
+          title="Analysis."
+          onPressright={() => alert("Analysis")}
           right={require("../assets/dots.png")}
           onPressleft={() => props.navigation.navigate("Home")}
           left={require("../assets/back.png")}
         ></Header>
 
       <View style={styles.view}>
-        <Text style={styles.text}>Settings</Text>
+        <Text style={styles.text}>Analysis</Text>
       </View>
+
+      <Footer navigation={props.navigation} />
     </SafeAreaView>
   );
 }
