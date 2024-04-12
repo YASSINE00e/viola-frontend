@@ -12,8 +12,8 @@ export default function IconButton(props) {
     },
 
     icon: {
-      height: height * 0.04,
-      width: width * 0.09,
+      height: 35,
+      width: 35,
     },
   });
   return (

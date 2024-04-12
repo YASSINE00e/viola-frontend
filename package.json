@@ -18,7 +18,8 @@
     "react": "18.2.0",
     "react-native": "0.73.6",
     "react-native-element-dropdown": "^2.10.4",
-    "react-native-maps": "^1.13.0"
+    "react-native-maps": "^1.13.0",
+    "expo-font": "~11.10.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

@@ -6,13 +6,21 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Dimensions,
-  Image
+  Image,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import Header from "../components/customHeader";
+import Button from "../components/customButton";
+
+import Input from "../components/customInput";
 const { width, height } = Dimensions.get("window");
 
 export default function Settings(props) {
+  const [name, onChangeName] = useState("");
+  const [surname, onChangeSurname] = useState("");
+  const [number, onChangeNumber] = useState("");
+  const [email, onChangeEmail] = useState("");
+  const [password, onChangePassword] = useState("");
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -21,19 +29,53 @@ export default function Settings(props) {
         source={require("../assets/bg.png")}
       />
 
-
       <Header
-          navigation={props.navigation}
-          title="Settings."
-          onPressright={() => alert("Settings")}
-          right={require("../assets/dots.png")}
-          onPressleft={() => props.navigation.navigate("Home")}
-          left={require("../assets/back.png")}
-        ></Header>
+        navigation={props.navigation}
+        title="Settings."
+        onPressright={() => alert("Settings")}
+        right={require("../assets/dots.png")}
+        onPressleft={() => props.navigation.navigate("Home")}
+        left={require("../assets/back.png")}
+      ></Header>
 
-      <View style={styles.view}>
-        <Text style={styles.text}>Settings</Text>
+      <View style={styles.settingscontainer}>
+        <Input
+          title="Change your name"
+          onChangeText={onChangeName}
+          value={name}
+          placeholder="name"
+        />
+        <Input
+          title="Change your surname"
+          onChangeText={onChangeSurname}
+          value={surname}
+          placeholder="surname"
+        />
+        <Input
+          title="Change your mobile number"
+          onChangeText={onChangeNumber}
+          value={number}
+          keyboardType="numeric"
+          placeholder="123456789"
+        />
+        <Input
+          title="Change your email"
+          onChangeText={onChangeEmail}
+          value={email}
+          placeholder="user@mail.com"
+        />
+        <Input
+          title="Change your password"
+          onChangeText={onChangePassword}
+          value={password}
+          secureTextEntry
+          placeholder="**********"
+        />
+        <Button title="Done" width={width} />
       </View>
+      <TouchableOpacity style={{ bottom: -height * 0.32 }}>
+        <Text style={styles.logout}>Log out</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -46,30 +88,19 @@ const styles = StyleSheet.create({
     tintColor: Color.bg,
     opacity: 0.5,
   },
-  backButtonIcon: {
-    top: 35,
-    left: 30,
-    height: 45,
-    width: 45,
-    position: "absolute",
-  },
-
-  view: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
   container: {
     backgroundColor: Color.White,
     flex: 1,
     width: "100%",
   },
-  text: {
-    fontSize: FontSize.medium,
-    fontFamily: FontFamily.interBold,
-    color: Color.Black,
-    width: width * 0.7,
-    fontWeight: "900",
+  settingscontainer: {
+    top: height * 0.15,
+    alignSelf: "center",
+  },
+  logout: {
+    alignSelf: "center",
+    fontFamily: FontFamily.interSemiBold,
+    fontSize: FontSize.small,
+    color: "red",
   },
 });
