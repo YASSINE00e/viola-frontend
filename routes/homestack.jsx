@@ -9,7 +9,7 @@ import EditPatient from "../screens/EditPatient";
 
 import Footer from "../components/customFooter";
 
-export default function App() {
+export default function Homestack() {
   const Stack = createNativeStackNavigator();
 
   return (

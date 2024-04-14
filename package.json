@@ -13,13 +13,14 @@
     "@react-navigation/native-stack": "^6.9.26",
     "command": "^0.0.5",
     "expo": "~50.0.14",
+    "expo-app-loading": "^2.1.1",
+    "expo-font": "~11.10.3",
     "expo-image": "^1.10.6",
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
     "react-native": "0.73.6",
     "react-native-element-dropdown": "^2.10.4",
-    "react-native-maps": "^1.13.0",
-    "expo-font": "~11.10.3"
+    "react-native-maps": "^1.13.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
