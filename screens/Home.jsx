@@ -10,13 +10,13 @@ import {
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import IconButton from "../components/customIconButton";
-
+import Card from "../components/customCard";
 import Button from "../components/customButton";
 
 const { width, height } = Dimensions.get("window");
 
 export default function Home({ navigation }) {
-  const [hasPatient, sethasPatient] = useState(false);
+  const [hasPatient, sethasPatient] = useState(true);
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -44,9 +44,18 @@ export default function Home({ navigation }) {
 
           <Button
             title="Get started"
-            onPress={() => navigation.navigate("Map")}
+            onPress={() => navigation.navigate("AddPatient")}
             style={{ width: width * 0.5 }}
           />
+        </View>
+      )}
+
+      {hasPatient && (
+        <View style={styles.cardcontainer}>
+          <Card navigation={navigation} id="1"></Card>
+          <Card navigation={navigation} id="2"></Card>
+          <Card navigation={navigation} id="3"></Card>
+          <Card navigation={navigation} id="3"></Card>
         </View>
       )}
     </SafeAreaView>
@@ -101,6 +110,13 @@ const styles = StyleSheet.create({
     backgroundColor: Color.White,
     flex: 1,
     width: "100%",
+  },
+
+  cardcontainer: {
+    alignItems: "center",
+    flexDirection: "column",
+    top: 130,
+    //flex: 1,
   },
 
   addonenow: {
