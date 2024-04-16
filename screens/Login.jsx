@@ -50,19 +50,33 @@ export default function Login({ setLogedIn, navigation }) {
             placeholder="123456789"
             keyboardType="numeric"
           />
-          <Input
-            title="Enter your password"
-            onChangeText={onChangePassword}
-            value={password}
-            secureTextEntry={isSecureEntry}
-            placeholder="**********"
-          />
-
-          <Button
-            title="Login"
-            onPress={() => setLogedIn(true)}
-            width={width}
-          />
+          <View>
+            <Input
+              title="Enter your password"
+              onChangeText={onChangePassword}
+              value={password}
+              secureTextEntry={isSecureEntry}
+              placeholder="**********"
+            />
+            <TouchableOpacity
+              onPress={() => setIsSecureEntry(!isSecureEntry)}
+              style={{
+                alignSelf: "flex-end",
+                right: 20,
+                marginTop: 50,
+                position: "absolute",
+              }}
+            >
+              <Image
+                source={
+                  isSecureEntry
+                    ? require("../assets/show.png")
+                    : require("../assets/hide.png")
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <Button title="Login" onPress={handleLogin} width={width} />
 
           <View style={styles.text}>
             <Text>Don’t have an account?</Text>

@@ -23,6 +23,8 @@ export default function Signup({ setSignedIn, navigation }) {
   const [number, onChangeNumber] = useState("");
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
+
 
   const handleSignup = async () => {};
   return (
@@ -66,13 +68,32 @@ Account :)`}</Text>
             value={email}
             placeholder="user@mail.com"
           />
-          <Input
-            title="Enter your password"
-            onChangeText={onChangePassword}
-            value={password}
-            secureTextEntry
-            placeholder="**********"
-          />
+          <View>
+            <Input
+              title="Enter your password"
+              onChangeText={onChangePassword}
+              value={password}
+              secureTextEntry={isSecureEntry}
+              placeholder="**********"
+            />
+            <TouchableOpacity
+              onPress={() => setIsSecureEntry(!isSecureEntry)}
+              style={{
+                alignSelf: "flex-end",
+                right: 20,
+                marginTop: 50,
+                position: "absolute",
+              }}
+            >
+              <Image
+                source={
+                  isSecureEntry
+                    ? require("../assets/show.png")
+                    : require("../assets/hide.png")
+                }
+              />
+            </TouchableOpacity>
+          </View>
           <Button title="Sign Up" onPress={handleSignup} width={width} />
         </View>
       </SafeAreaView>
