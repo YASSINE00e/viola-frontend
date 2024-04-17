@@ -25,7 +25,43 @@ export default function Signup({ setSignedIn, navigation }) {
   const [password, onChangePassword] = useState("");
   const [isSecureEntry, setIsSecureEntry] = useState(true);
 
+  const [nameVerify, setNameVerify] = useState(null);
+  const [surnameVerify, setSurnameVerify] = useState(null);
+  const [numberVerify, setNumberVerify] = useState(null);
+  const [passwordVerify, setPasswordVerify] = useState(null);
 
+  function handleName(nameVar) {
+    onChangeName(nameVar);
+    setNameVerify(false);
+    if (name.length > 2) {
+      onChangeName(nameVar);
+      setNameVerify(true);
+    }
+  }
+  function handleSurname(surnameVar) {
+    onChangeSurname(surnameVar);
+    setSurnameVerify(false);
+    if (surname.length > 2) {
+      onChangeSurname(surnameVar);
+      setSurnameVerify(true);
+    }
+  }
+  function handleNumber(numberVar) {
+    onChangeNumber(numberVar);
+    setNumberVerify(false);
+    if (/[0-9]*[0-9]{8}/.test(numberVar)) {
+      onChangeNumber(numberVar);
+      setNumberVerify(true);
+    }
+  }
+  function handlePassword(passwordVar) {
+    onChangePassword(passwordVar);
+    setPasswordVerify(false);
+    if (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(passwordVar)) {
+      onChangePassword(passwordVar);
+      setPasswordVerify(true);
+    }
+  }
   const handleSignup = async () => {};
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -43,25 +79,101 @@ export default function Signup({ setSignedIn, navigation }) {
 Account :)`}</Text>
 
         <View style={styles.signupcontainer}>
-          <Input
-            title="Enter your name"
-            onChangeText={onChangeName}
-            value={name}
-            placeholder="name"
-          />
-          <Input
-            title="Enter your surname"
-            onChangeText={onChangeSurname}
-            value={surname}
-            placeholder="surname"
-          />
-          <Input
-            title="Enter your mobile number"
-            onChangeText={onChangeNumber}
-            value={number}
-            keyboardType="numeric"
-            placeholder="123456789"
-          />
+          <View>
+            <Input
+              title="Enter your name"
+              onChangeText={handleName}
+              value={name}
+              placeholder="name"
+            />
+            {nameVerify && (
+              <Image
+                source={require("../assets/verified.png")}
+                style={{
+                  alignSelf: "flex-end",
+                  right: 20,
+                  marginTop: 50,
+                  position: "absolute",
+                  width: 18,
+                  height: 18,
+                }}
+              />
+            )}
+            {nameVerify == false && (
+              <Text
+                style={{
+                  alignSelf: "center",
+                  marginTop: -15,
+                  marginBottom: 5,
+                  color: "red",
+                }}
+              >
+                Name sholud be more then 3 characters.
+              </Text>
+            )}
+          </View>
+          <View>
+            <Input
+              title="Enter your surname"
+              onChangeText={handleSurname}
+              value={surname}
+              placeholder="surname"
+            />
+            {surnameVerify && (
+              <Image
+                source={require("../assets/verified.png")}
+                style={{
+                  alignSelf: "flex-end",
+                  right: 20,
+                  marginTop: 50,
+                  position: "absolute",
+                  width: 18,
+                  height: 18,
+                }}
+              />
+            )}
+            {surnameVerify == false && (
+              <Text
+                style={{
+                  alignSelf: "center",
+                  marginTop: -15,
+                  marginBottom: 5,
+                  color: "red",
+                }}
+              >
+                Surname sholud be more then 3 characters.
+              </Text>
+            )}
+          </View>
+          <View>
+            <Input
+              title="Enter your mobile number"
+              onChangeText={handleNumber}
+              value={number}
+              keyboardType="numeric"
+              placeholder="123456789"
+            />
+            {numberVerify && (
+              <Image
+                source={require("../assets/verified.png")}
+                style={{
+                  alignSelf: "flex-end",
+                  right: 20,
+                  marginTop: 50,
+                  position: "absolute",
+                  width: 18,
+                  height: 18,
+                }}
+              />
+            )}
+            {numberVerify == false && (
+              <Text
+                style={{ alignSelf: "center", marginTop: -15, color: "red" }}
+              >
+                Phone number sholud be more then 8 digit.
+              </Text>
+            )}
+          </View>
           <Input
             title="Enter your email"
             onChangeText={onChangeEmail}
@@ -71,7 +183,7 @@ Account :)`}</Text>
           <View>
             <Input
               title="Enter your password"
-              onChangeText={onChangePassword}
+              onChangeText={handlePassword}
               value={password}
               secureTextEntry={isSecureEntry}
               placeholder="**********"
@@ -93,6 +205,20 @@ Account :)`}</Text>
                 }
               />
             </TouchableOpacity>
+
+            {passwordVerify == false && (
+              <Text
+                style={{
+                  alignSelf: "center",
+                  marginTop: -15,
+                  marginBottom: 15,
+                  color: "red",
+                }}
+              >
+                {`Uppercase, Lowercase, Number
+      and 6 or more characters.`}
+              </Text>
+            )}
           </View>
           <Button title="Sign Up" onPress={handleSignup} width={width} />
         </View>
