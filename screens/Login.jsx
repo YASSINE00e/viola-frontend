@@ -10,12 +10,16 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image,
+  Alert,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 
 import Button from "../components/customButton";
 import Input from "../components/customInput";
 import IconButton from "../components/customIconButton";
+
+import apiRoutes from "../global/apiRoutes";
+import { post } from "../global/apiCalls";
 
 const { width, height } = Dimensions.get("window");
 
@@ -24,7 +28,28 @@ export default function Login({ setLogedIn, navigation }) {
   const [number, onChangeNumber] = useState("");
   const [password, onChangePassword] = useState("");
 
-  const handleLogin = async () => {};
+  const handleLogin = async () => {
+    const body = {
+      Phone: number,
+      Password: password,
+    };
+
+    try {
+      var data = await post(apiRoutes.login, body);
+
+      if (data.status === 200) {
+        setLogedIn(true);
+      } else if (data.status === 401) {
+        Alert.alert("Incorrect password.");
+      } else if (data.status === 404) {
+        Alert.alert("User not found.");
+      } else {
+        Alert.alert("An error occurred.");
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
