@@ -9,15 +9,19 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image,
+  Alert,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import Button from "../components/customButton";
 import Input from "../components/customInput";
 import IconButton from "../components/customIconButton";
 
+import apiRoutes from "../global/apiRoutes";
+import { post } from "../global/apiCalls";
+
 const { width, height } = Dimensions.get("window");
 
-export default function Signup({ setSignedIn, navigation }) {
+export default function Signup({ setLogedIn, navigation }) {
   const [name, onChangeName] = useState("");
   const [surname, onChangeSurname] = useState("");
   const [number, onChangeNumber] = useState("");
@@ -62,7 +66,28 @@ export default function Signup({ setSignedIn, navigation }) {
       setPasswordVerify(true);
     }
   }
-  const handleSignup = async () => {};
+  const handleSignup = async () => {
+    const body = {
+      name: name,
+      surname: surname,
+      phone: number,
+      mail: email,
+      password: password,
+    };
+
+    try {
+      const response = await post(apiRoutes.register, body);
+      if (response.status === 200) {
+        setLogedIn(true);
+      } else if (response.status === 409) {
+        Alert.alert("Account already exists");
+      } else {
+        Alert.alert("An error occurred.");
+      }
+    } catch (error) {
+      Alert.alert(error);
+    }
+  };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>

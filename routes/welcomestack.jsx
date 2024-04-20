@@ -16,7 +16,9 @@ export default function Welcomestack({ setLogedIn }) {
       <Stack.Screen name="Login" options={{}}>
         {(screenProps) => <Login {...screenProps} setLogedIn={setLogedIn} />}
       </Stack.Screen>
-      <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen name="Signup" options={{}}>
+        {(screenProps) => <Signup {...screenProps} setLogedIn={setLogedIn} />}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 }
