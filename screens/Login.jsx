@@ -35,13 +35,13 @@ export default function Login({ setLogedIn, navigation }) {
     };
 
     try {
-      var data = await post(apiRoutes.login, body);
+      var response = await post(apiRoutes.login, body);
 
-      if (data.status === 200) {
+      if (response.status === 200) {
         setLogedIn(true);
-      } else if (data.status === 401) {
+      } else if (response.status === 401) {
         Alert.alert("Incorrect password.");
-      } else if (data.status === 404) {
+      } else if (response.status === 404) {
         Alert.alert("User not found.");
       } else {
         Alert.alert("An error occurred.");
