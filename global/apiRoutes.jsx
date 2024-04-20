@@ -1,6 +1,6 @@
-const API_URL = "http://192.168.100.198:5047";
+const API_URL = "http://10.0.2.2:5047";
 
 module.exports = {
-  register: API_URL + "/api/Registration",
-  login: API_URL + "/api/Login",
+  register: API_URL + "/api/Auth/Registration",
+  login: API_URL + "/api/Auth/Login",
 };
