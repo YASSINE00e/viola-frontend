@@ -7,10 +7,13 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  Alert,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import Header from "../components/customHeader";
 import Button from "../components/customButton";
+import Welcome from "../screens/Welcome";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Input from "../components/customInput";
 const { width, height } = Dimensions.get("window");
@@ -21,6 +24,16 @@ export default function Settings(props) {
   const [number, onChangeNumber] = useState("");
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
+
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.setItem("isLoggedIn", "false");
+      props.setLogedIn(false);
+      props.navigation.navigate(Welcome);
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -73,7 +86,7 @@ export default function Settings(props) {
         />
         <Button title="Done" width={width} />
       </View>
-      <TouchableOpacity style={{ bottom: -height * 0.32 }}>
+      <TouchableOpacity style={{ marginBottom: 10 }} onPress={handleLogout}>
         <Text style={styles.logout}>Log out</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -92,6 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.White,
     flex: 1,
     width: "100%",
+    justifyContent: "space-between",
   },
   settingscontainer: {
     top: height * 0.15,

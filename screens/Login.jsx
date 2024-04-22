@@ -13,6 +13,7 @@ import {
   Alert,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Button from "../components/customButton";
 import Input from "../components/customInput";
@@ -38,6 +39,7 @@ export default function Login({ setLogedIn, navigation }) {
       var response = await post(apiRoutes.login, body);
 
       if (response.status === 200) {
+        await AsyncStorage.setItem("isLoggedIn", "true");
         setLogedIn(true);
       } else if (response.status === 401) {
         Alert.alert("Incorrect password.");

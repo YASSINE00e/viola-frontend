@@ -9,7 +9,7 @@ import EditPatient from "../screens/EditPatient";
 
 import Footer from "../components/customFooter";
 
-export default function Homestack() {
+export default function Homestack({ setLogedIn }) {
   const Stack = createNativeStackNavigator();
 
   return (
@@ -20,7 +20,9 @@ export default function Homestack() {
       }}
     >
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Settings" options={{}}>
+        {(screenProps) => <Settings {...screenProps} setLogedIn={setLogedIn} />}
+      </Stack.Screen>
       <Stack.Screen name="AddPatient" component={AddPatient} />
       <Stack.Screen name="Map" component={Map} />
       <Stack.Screen name="Analysis" component={Analysis} />
