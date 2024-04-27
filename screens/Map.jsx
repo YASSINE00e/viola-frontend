@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
-  TouchableOpacity,
   Dimensions,
   TouchableWithoutFeedback,
   Keyboard,
-  ScrollView,
   Image,
 } from "react-native";
-import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
-import IconButton from "../components/customIconButton";
+import { Color } from "../global/GlobalStyles";
 import Footer from "../components/customFooter";
 import Header from "../components/customHeader";
 import MapView from "react-native-maps";
@@ -98,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.White,
     flex: 1,
     width: "100%",
-    justifyContent: "center", // Add this
-    alignItems: "center", // Add this
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

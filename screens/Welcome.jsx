@@ -7,7 +7,7 @@ import Button from "../components/customButton";
 const { width, height } = Dimensions.get("window");
 
 export default function Welcome(props) {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -24,14 +24,14 @@ export default function Welcome(props) {
         />
       </View>
       <View style={styles.textcontainer}>
-        <Text style={styles.letsGetStarted}>Let’s Get Started</Text>
-        <Text style={styles.growTogether}>Grow Together</Text>
+        <Text style={styles.title}>Let’s Get Started</Text>
+        <Text style={styles.text}>Grow Together</Text>
       </View>
 
       <View style={styles.joinbutton}>
         <Button
           title="Join Now"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigate("Login")}
           width={width}
         />
       </View>
@@ -61,22 +61,6 @@ const styles = StyleSheet.create({
     padding: 30,
     alignItems: "center",
   },
-  jointext: {
-    color: Color.White,
-    textAlign: "center",
-    padding: 18,
-    fontSize: 25,
-    lineHeight: 21,
-    fontWeight: "bold",
-  },
-  button: {
-    backgroundColor: Color.Black,
-    borderWidth: 2,
-    borderColor: Color.Black,
-    borderRadius: 25,
-    width: width * 0.6,
-    height: 55,
-  },
   textcontainer: {
     bottom: 150,
     position: "absolute",
@@ -84,13 +68,13 @@ const styles = StyleSheet.create({
     textAlign: "left",
     left: 30,
   },
-  letsGetStarted: {
+  title: {
     fontSize: 75,
     fontWeight: "900",
     fontFamily: FontFamily.interExtraBold,
     width: width * 0.9,
   },
-  growTogether: {
+  text: {
     left: 10,
     fontSize: 20,
     fontFamily: FontFamily.interMedium,

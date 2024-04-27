@@ -21,7 +21,7 @@ import { post } from "../global/apiCalls";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Signup({ setLogedIn, navigation }) {
+export default function Signup(props) {
   const [name, onChangeName] = useState("");
   const [surname, onChangeSurname] = useState("");
   const [number, onChangeNumber] = useState("");
@@ -78,7 +78,7 @@ export default function Signup({ setLogedIn, navigation }) {
     try {
       const response = await post(apiRoutes.register, body);
       if (response.status === 200) {
-        setLogedIn(true);
+        props.setLogedIn(true);
       } else if (response.status === 409) {
         Alert.alert("Account already exists");
       } else {
@@ -97,7 +97,7 @@ export default function Signup({ setLogedIn, navigation }) {
           source={require("../assets/bg.png")}
         />
         <IconButton
-          onPress={() => navigation.navigate("Welcome")}
+          onPress={() => props.navigation.navigate("Welcome")}
           source={require("../assets/back.png")}
         />
         <Text style={styles.title}>{`Create

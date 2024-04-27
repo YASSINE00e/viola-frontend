@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import React from "react";
+import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+import { Color } from "../global/GlobalStyles";
 
 export default function Footer({ navigation }) {
   const route = useRoute();
   const styles = StyleSheet.create({
-    button: {
-      //padding: 10,
-    },
+    button: {},
     icon: {
       height: 30,
       width: 30,
@@ -57,8 +55,6 @@ export default function Footer({ navigation }) {
         )}
       </TouchableOpacity>
 
-
-
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate("Analysis")}
@@ -69,14 +65,9 @@ export default function Footer({ navigation }) {
             style={styles.icon}
           />
         ) : (
-          <Image
-            source={require("../assets/heart.png")}
-            style={styles.icon}
-          />
+          <Image source={require("../assets/heart.png")} style={styles.icon} />
         )}
       </TouchableOpacity>
-
-
 
       <TouchableOpacity
         style={styles.button}
@@ -94,7 +85,6 @@ export default function Footer({ navigation }) {
           />
         )}
       </TouchableOpacity>
-
     </View>
   );
 }

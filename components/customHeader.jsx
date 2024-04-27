@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import { useRoute } from "@react-navigation/native";
-import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+import { FontSize, Color } from "../global/GlobalStyles";
 
 export default function Header(props) {
-  const route = useRoute();
   const styles = StyleSheet.create({
-    button: {
-      //padding: 10,
-    },
+    button: {},
     title: {
       fontSize: FontSize.small,
       fontWeight: "bold",

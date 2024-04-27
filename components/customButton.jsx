@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+import { FontSize, Color } from "../global/GlobalStyles";
 
 export default function CustomButton(props) {
   const styles = StyleSheet.create({

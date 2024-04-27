@@ -24,7 +24,7 @@ import { post } from "../global/apiCalls";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Login({ setLogedIn, navigation }) {
+export default function Login(props) {
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   const [number, onChangeNumber] = useState("");
   const [password, onChangePassword] = useState("");
@@ -40,7 +40,7 @@ export default function Login({ setLogedIn, navigation }) {
 
       if (response.status === 200) {
         await AsyncStorage.setItem("isLoggedIn", "true");
-        setLogedIn(true);
+        props.setLogedIn(true);
       } else if (response.status === 401) {
         Alert.alert("Incorrect password.");
       } else if (response.status === 404) {
@@ -62,12 +62,12 @@ export default function Login({ setLogedIn, navigation }) {
           source={require("../assets/bg.png")}
         />
         <IconButton
-          onPress={() => navigation.navigate("Welcome")}
+          onPress={() => props.navigation.navigate("Welcome")}
           source={require("../assets/back.png")}
         />
 
-        <Text style={styles.enterYourNumber}>Enter Your Number & Password</Text>
-        <Text style={styles.welcomeBack}>Welcome Back!</Text>
+        <Text style={styles.secondtitle}>Enter Your Number & Password</Text>
+        <Text style={styles.title}>Welcome Back!</Text>
 
         <View style={styles.logincontainer}>
           <Input
@@ -107,7 +107,7 @@ export default function Login({ setLogedIn, navigation }) {
 
           <View style={styles.text}>
             <Text>Don’t have an account?</Text>
-            <Pressable onPress={() => navigation.navigate("Signup")}>
+            <Pressable onPress={() => props.navigation.navigate("Signup")}>
               <Text style={{ fontWeight: "bold", marginLeft: 5 }}>Sign Up</Text>
             </Pressable>
           </View>
@@ -126,13 +126,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     tintColor: Color.bg1,
   },
-  backButtonIcon: {
-    top: 45,
-    left: 30,
-    height: 40,
-    width: 40,
-    position: "absolute",
-  },
+
 
   logincontainer: {
     top: height * 0.35,
@@ -150,7 +144,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 
-  enterYourNumber: {
+  secondtitle: {
     top: height * 0.2,
     fontSize: FontSize.small,
     fontWeight: "500",
@@ -160,7 +154,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 40,
   },
-  welcomeBack: {
+  title: {
     top: height * 0.15,
     fontSize: FontSize.medium,
     fontFamily: FontFamily.interBold,
