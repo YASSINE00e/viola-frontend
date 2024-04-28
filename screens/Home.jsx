@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,16 +7,56 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  FlatList,
+  ActivityIndicator,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import IconButton from "../components/customIconButton";
 import Card from "../components/customCard";
 import Button from "../components/customButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import apiRoutes from "../global/apiRoutes";
+import { get } from "../global/apiCalls";
 
 const { width, height } = Dimensions.get("window");
 
 export default function Home({ navigation }) {
-  const [hasPatient, sethasPatient] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [hasPatient, setHasPatient] = useState(false);
+  const [patients, setPatients] = useState([]);
+
+  useEffect(() => {
+    const fetchPatients = async () => {
+      setLoading(true);
+      try {
+        const caregiverId = parseInt(await AsyncStorage.getItem("id"));
+        const response = await get(
+          apiRoutes.getPatients + `?id=${caregiverId}`
+        );
+        if (response.status == 200) {
+          if (response.NbPatients > 0) {
+            setHasPatient(true);
+          }
+          setPatients(response.data);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    };
+
+    fetchPatients();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color={Color.bg} />
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -52,10 +92,18 @@ export default function Home({ navigation }) {
 
       {hasPatient && (
         <View style={styles.cardcontainer}>
-          <Card navigation={navigation} id="1"></Card>
-          <Card navigation={navigation} id="2"></Card>
-          <Card navigation={navigation} id="3"></Card>
-          <Card navigation={navigation} id="3"></Card>
+          <FlatList
+            data={patients}
+            keyExtractor={(item) => `${item.ViolaId}`}
+            renderItem={({ item }) => (
+              <Card
+                navigation={navigation}
+                id={item.ViolaId}
+                name={item.Name + " " + item.Surname}
+              />
+            )}
+            style={{ width: "100%", height: height * 0.85 }}
+          />
         </View>
       )}
     </SafeAreaView>
@@ -115,8 +163,7 @@ const styles = StyleSheet.create({
   cardcontainer: {
     alignItems: "center",
     flexDirection: "column",
-    top: 130,
-    //flex: 1,
+    top: 100,
   },
 
   addonenow: {

@@ -68,7 +68,7 @@ export default function Card(props) {
       width: "90%",
       height: 150,
       margin: 5,
-
+      alignSelf:"center",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
