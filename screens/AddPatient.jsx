@@ -10,6 +10,7 @@ import {
   Keyboard,
   ScrollView,
   Image,
+  Alert,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import Button from "../components/customButton";
@@ -17,18 +18,46 @@ import Input from "../components/customInput";
 import Bloodtype from "../components/bloodtypeDropdown";
 import Age from "../components/ageDropdown";
 import IconButton from "../components/customIconButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import apiRoutes from "../global/apiRoutes";
+import { post } from "../global/apiCalls";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Signup({ setSignedIn, navigation }) {
+export default function Signup({ navigation }) {
+  const [ViolaId, onChangeViolaId] = useState(null);
   const [name, onChangeName] = useState("");
   const [surname, onChangeSurname] = useState("");
   const [age, onChangeAge] = useState(null);
-  const [bloodtype, onChangeBloodtype] = useState(null);
+  const [bloodtype, onChangeBloodtype] = useState("");
   const [houselocation, onChangeHL] = useState("");
   const [weight, onChangeWeight] = useState("");
 
-  const handleAddPatient = async () => {};
+  const handleAddPatient = async () => {
+    const caregiverId = parseInt(await AsyncStorage.getItem("id"));
+
+    const body = {
+      ViolaId: ViolaId,
+      Name: name,
+      Surname: surname,
+      Age: parseInt(age),
+      HouseLocation: houselocation,
+      BloodType: bloodtype,
+      Weight: parseInt(weight),
+      CaregiverId: caregiverId,
+    };
+
+    try {
+      const response = await post(apiRoutes.addPatient, body);
+      if (response.status == 200) {
+        navigation.navigate("Home");
+      } else {
+        Alert.alert("An error occurred.");
+      }
+    } catch (error) {
+      Alert.alert(error);
+    }
+  };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
