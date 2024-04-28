@@ -40,6 +40,7 @@ export default function Login(props) {
 
       if (response.status === 200) {
         await AsyncStorage.setItem("isLoggedIn", "true");
+        await AsyncStorage.setItem("id", String(response.id));
         props.setLogedIn(true);
       } else if (response.status === 401) {
         Alert.alert("Incorrect password.");

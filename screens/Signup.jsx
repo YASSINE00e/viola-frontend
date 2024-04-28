@@ -78,6 +78,8 @@ export default function Signup(props) {
     try {
       const response = await post(apiRoutes.register, body);
       if (response.status === 200) {
+        await AsyncStorage.setItem("isLoggedIn", "true");
+        await AsyncStorage.setItem("id", String(response.id));
         props.setLogedIn(true);
       } else if (response.status === 409) {
         Alert.alert("Account already exists");

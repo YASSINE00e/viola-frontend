@@ -28,6 +28,7 @@ export default function Settings(props) {
   const handleLogout = async () => {
     try {
       await AsyncStorage.setItem("isLoggedIn", "false");
+      await AsyncStorage.setItem("id", "");
       props.setLogedIn(false);
       props.navigation.navigate(Welcome);
     } catch (error) {
