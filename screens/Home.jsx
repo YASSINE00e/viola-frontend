@@ -34,7 +34,7 @@ export default function Home({ navigation }) {
           apiRoutes.getPatients + `?id=${caregiverId}`
         );
         if (response.status == 200) {
-          if (response.NbPatients > 0) {
+          if (response.nbPatients > 0) {
             setHasPatient(true);
           }
           setPatients(response.data);
