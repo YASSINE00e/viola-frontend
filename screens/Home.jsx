@@ -70,7 +70,7 @@ export default function Home({ navigation }) {
         source={require("../assets/accounticon.png")}
       />
       <IconButton
-        onPress={() => navigation.navigate("AddPatient")}
+        onPress={() => navigation.navigate("QrCodeScanner")}
         source={require("../assets/addicon.png")}
         style={{ right: 30, left: null }}
       />
@@ -84,7 +84,7 @@ export default function Home({ navigation }) {
 
           <Button
             title="Get started"
-            onPress={() => navigation.navigate("AddPatient")}
+            onPress={() => navigation.navigate("QrCodeScanner")}
             style={{ width: width * 0.5 }}
           />
         </View>

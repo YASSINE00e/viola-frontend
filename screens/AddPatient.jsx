@@ -24,8 +24,9 @@ import { post } from "../global/apiCalls";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Signup({ navigation }) {
-  const [ViolaId, onChangeViolaId] = useState(null);
+export default function AddPatient({ navigation }) {
+  const { ViolaId: initialViolaId } = route.params || {};
+  const [ViolaId, onChangeViolaId] = useState(initialViolaId);
   const [name, onChangeName] = useState("");
   const [surname, onChangeSurname] = useState("");
   const [age, onChangeAge] = useState(null);
@@ -73,7 +74,7 @@ export default function Signup({ navigation }) {
 
         <Text style={styles.title}>{`Add a new patient.`}</Text>
 
-        <ScrollView style={styles.signupcontainer}>
+        <ScrollView style={styles.addpatientcontainer}>
           <Input
             title="Enter your patient name"
             onChangeText={onChangeName}
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
 
-  signupcontainer: {
+  addpatientcontainer: {
     top: height * 0.25,
     alignSelf: "center",
   },

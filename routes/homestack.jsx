@@ -6,6 +6,7 @@ import AddPatient from "../screens/AddPatient";
 import Map from "../screens/Map";
 import Analysis from "../screens/Analysis";
 import EditPatient from "../screens/EditPatient";
+import QrCodeScanner from "../screens/QrCodeScanner";
 
 import Footer from "../components/customFooter";
 
@@ -24,6 +25,7 @@ export default function Homestack({ setLogedIn }) {
         {(screenProps) => <Settings {...screenProps} setLogedIn={setLogedIn} />}
       </Stack.Screen>
       <Stack.Screen name="AddPatient" component={AddPatient} />
+      <Stack.Screen name="QrCodeScanner" component={QrCodeScanner} />
       <Stack.Screen name="Map" component={Map} />
       <Stack.Screen name="Analysis" component={Analysis} />
       <Stack.Screen name="EditPatient" component={EditPatient} />
