@@ -24,7 +24,7 @@ import { post } from "../global/apiCalls";
 
 const { width, height } = Dimensions.get("window");
 
-export default function AddPatient({ navigation }) {
+export default function AddPatient({ navigation, route }) {
   const { ViolaId: initialViolaId } = route.params || {};
   const [ViolaId, onChangeViolaId] = useState(initialViolaId);
   const [name, onChangeName] = useState("");
