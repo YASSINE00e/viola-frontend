@@ -6,8 +6,12 @@ import {
   View,
   Image,
   ImageBackground,
+  Alert,
 } from "react-native";
 import { FontSize, FontFamily } from "../global/GlobalStyles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import apiRoutes from "../global/apiRoutes";
+import { post } from "../global/apiCalls";
 
 export default function Card(props) {
   const images = [
@@ -68,7 +72,7 @@ export default function Card(props) {
       width: "90%",
       height: 150,
       margin: 5,
-      alignSelf:"center",
+      alignSelf: "center",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -79,30 +83,71 @@ export default function Card(props) {
       elevation: 5,
     },
   });
+  const [isVisible, setIsVisible] = useState(true);
 
+  const removePatient = async () => {
+    const caregiverId = parseInt(await AsyncStorage.getItem("id"));
+
+    const body = {
+      ViolaId: props.id,
+      CaregiverId: caregiverId,
+    };
+
+    try {
+      const response = await post(apiRoutes.removePatient, body);
+      if (response.status == 200) {
+        setIsVisible(false);
+      } else {
+        Alert.alert("An error occurred.");
+      }
+    } catch (error) {
+      Alert.alert(error);
+    }
+  };
+
+  const handleLongPress = () => {
+    Alert.alert(
+      "Confirmation",
+      "Are you sure you want to remove it?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "YES", onPress: removePatient },
+      ],
+      { cancelable: false }
+    );
+  };
   return (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={() => props.navigation.navigate("Map")}
-    >
-      <ImageBackground
-        source={images[bgImageIndex]}
-        style={{
-          width: "100%",
-          height: "100%",
-          borderRadius: 20,
-          overflow: "hidden",
-        }}
-      >
-        <View style={{ alignItems: "center", flexDirection: "row" }}>
-          <Image
-            source={require("../assets/favicon.png")}
-            style={styles.icon}
-          />
-          <Text style={styles.id}>#{props.id}</Text>
-        </View>
-        <Text style={styles.text}>{props.name}</Text>
-      </ImageBackground>
-    </TouchableOpacity>
+    <View>
+      {isVisible && (
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => props.navigation.navigate("Map")}
+          onLongPress={handleLongPress}
+        >
+          <ImageBackground
+            source={images[bgImageIndex]}
+            style={{
+              width: "100%",
+              height: "100%",
+              borderRadius: 20,
+              overflow: "hidden",
+            }}
+          >
+            <View style={{ alignItems: "center", flexDirection: "row" }}>
+              <Image
+                source={require("../assets/favicon.png")}
+                style={styles.icon}
+              />
+              <Text style={styles.id}>#{props.id}</Text>
+            </View>
+            <Text style={styles.text}>{props.name}</Text>
+          </ImageBackground>
+        </TouchableOpacity>
+      )}
+    </View>
   );
 }
