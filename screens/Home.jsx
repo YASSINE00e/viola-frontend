@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
-  TouchableOpacity,
   Dimensions,
   Image,
   FlatList,
   ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import IconButton from "../components/customIconButton";
@@ -22,31 +22,30 @@ const { width, height } = Dimensions.get("window");
 
 export default function Home({ navigation }) {
   const [loading, setLoading] = useState(true);
-  const [hasPatient, setHasPatient] = useState(false);
   const [patients, setPatients] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
-    const fetchPatients = async () => {
-      setLoading(true);
-      try {
-        const caregiverId = parseInt(await AsyncStorage.getItem("id"));
-        const response = await get(
-          apiRoutes.getPatients + `?id=${caregiverId}`
-        );
-        if (response.status == 200) {
-          if (response.nbPatients > 0) {
-            setHasPatient(true);
-          }
-          setPatients(response.data);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-        setLoading(false);
+  const fetchPatients = async () => {
+    setLoading(true);
+    try {
+      const caregiverId = parseInt(await AsyncStorage.getItem("id"));
+      const response = await get(apiRoutes.getPatients + `?id=${caregiverId}`);
+      if (response.status == 200) {
+        setPatients(response.data);
       }
-    };
-
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
     fetchPatients();
+  }, []);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchPatients().then(() => setRefreshing(false));
   }, []);
 
   if (loading) {
@@ -74,38 +73,36 @@ export default function Home({ navigation }) {
         source={require("../assets/addicon.png")}
         style={{ right: 30, left: null }}
       />
-
-      {!hasPatient && (
-        <View style={styles.nopatientfound}>
-          <Text style={styles.nopatient}>No patient found!</Text>
-          <Text style={styles.addonenow}>
-            Add one now, and start tracking them.
-          </Text>
-
-          <Button
-            title="Get started"
-            onPress={() => navigation.navigate("QrCodeScanner")}
-            style={{ width: width * 0.5 }}
-          />
-        </View>
-      )}
-
-      {hasPatient && (
-        <View style={styles.cardcontainer}>
-          <FlatList
-            data={patients}
-            keyExtractor={(item) => `${item.ViolaId}`}
-            renderItem={({ item }) => (
-              <Card
-                navigation={navigation}
-                id={item.ViolaId}
-                name={item.Name + " " + item.Surname}
+      <View style={styles.cardcontainer}>
+        <FlatList
+          data={patients}
+          keyExtractor={(item) => `${item.ViolaId}`}
+          renderItem={({ item }) => (
+            <Card
+              navigation={navigation}
+              id={item.ViolaId}
+              name={item.Name + " " + item.Surname}
+            />
+          )}
+          style={{ width: "100%", height: height * 0.9 }}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          ListEmptyComponent={
+            <View style={styles.nopatientfound}>
+              <Text style={styles.nopatient}>No patient found!</Text>
+              <Text style={styles.addonenow}>
+                Add one now, and start tracking them.
+              </Text>
+              <Button
+                title="Get started"
+                onPress={() => navigation.navigate("QrCodeScanner")}
+                style={{ width: width * 0.5 }}
               />
-            )}
-            style={{ width: "100%", height: height * 0.85 }}
-          />
-        </View>
-      )}
+            </View>
+          }
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -118,37 +115,9 @@ const styles = StyleSheet.create({
     tintColor: Color.bg,
     opacity: 0.5,
   },
-  SettingsIcon: {
-    top: 45,
-    left: 30,
-    height: 40,
-    width: 40,
-    position: "absolute",
-  },
-  AddIcon: {
-    top: 45,
-    right: 30,
-    height: 40,
-    width: 40,
-    position: "absolute",
-  },
-  Addtext: {
-    color: Color.White,
-    textAlign: "center",
-    padding: 12,
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  button: {
-    backgroundColor: Color.Black,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: Color.Black,
-    width: width * 0.7,
-    height: 55,
-  },
 
   nopatientfound: {
+    height: height * 0.7,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
