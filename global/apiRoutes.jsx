@@ -9,4 +9,5 @@ module.exports = {
   removePatient: API_URL + "/api/Patient/RemovePatient",
   getUserData: API_URL + "/api/Settings/GetUserData",
   changeData: API_URL + "/api/Settings/ChangeData",
+  deleteUser: API_URL + "/api/Settings/DeleteUser",
 };

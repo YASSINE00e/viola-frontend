@@ -49,7 +49,7 @@ export default function Settings(props) {
       }
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
       setLoading(false);
     }
   };
@@ -76,9 +76,47 @@ export default function Settings(props) {
         Alert.alert("An error occurred.");
       }
     } catch (error) {
-      Alert.alert(error);
+      Alert.alert(error.message);
     }
   };
+
+  const handleDeleteUser = async () => {
+    Alert.alert(
+      "Delete Account",
+      "Are you sure you want to delete your account?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel"),
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: async () => {
+            try {
+              const caregiverId = parseInt(await AsyncStorage.getItem("id"));
+              const response = await post(apiRoutes.deleteUser + `?id=${caregiverId}`);
+              console.log(response);
+              if (response.status == 200) {
+                console.log(response);
+                await AsyncStorage.setItem("isLoggedIn", "false");
+                await AsyncStorage.setItem("id", "");
+                props.setLogedIn(false);
+                props.navigation.navigate(Welcome);
+                Alert.alert("Deleted Successfully");
+              } else {
+                Alert.alert("An error occurred.");
+              }
+            } catch (error) {
+              Alert.alert(error.message);
+            }
+          }
+        }
+      ],
+      { cancelable: false }
+    );
+  };
+
 
   const handleLogout = async () => {
     try {
@@ -169,10 +207,20 @@ export default function Settings(props) {
               />
             </TouchableOpacity>
           </View>
-          <Button title="Done" onPress={handleChangeData} width={width} />
+          <Button
+            title="Done"
+            onPress={handleChangeData}
+            width={width}
+            style={{ marginBottom: 10 }}
+          />
+          <Button
+            title="Log out"
+            onPress={handleLogout}
+            width={width}
+          />
         </View>
-        <TouchableOpacity style={{ marginBottom: 10 }} onPress={handleLogout}>
-          <Text style={styles.logout}>Log out</Text>
+        <TouchableOpacity style={{ marginBottom: 10 }} onPress={handleDeleteUser}>
+          <Text style={styles.logout}>Delete User</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </TouchableWithoutFeedback>
