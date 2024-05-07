@@ -7,4 +7,6 @@ module.exports = {
   getPatients: API_URL + "/api/Patient/GetPatients",
   checkViolaId: API_URL + "/api/Patient/CheckViolaId",
   removePatient: API_URL + "/api/Patient/RemovePatient",
+  getUserData: API_URL + "/api/Settings/GetUserData",
+  changeData: API_URL + "/api/Settings/ChangeData",
 };
