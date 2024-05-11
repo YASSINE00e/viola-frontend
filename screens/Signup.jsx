@@ -19,6 +19,9 @@ import IconButton from "../components/customIconButton";
 import apiRoutes from "../global/apiRoutes";
 import { post } from "../global/apiCalls";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 const { width, height } = Dimensions.get("window");
 
 export default function Signup(props) {
@@ -87,7 +90,7 @@ export default function Signup(props) {
         Alert.alert("An error occurred.");
       }
     } catch (error) {
-      Alert.alert(error);
+      Alert.alert(error.message);
     }
   };
   return (
