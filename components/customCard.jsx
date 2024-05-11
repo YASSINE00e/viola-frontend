@@ -125,7 +125,10 @@ export default function Card(props) {
       {isVisible && (
         <TouchableOpacity
           style={styles.card}
-          onPress={() => props.navigation.navigate("Map")}
+          onPress={() => {
+            props.navigation.navigate("Map");
+            AsyncStorage.setItem("Patientsid", String(props.id));
+          }}
           onLongPress={handleLongPress}
         >
           <ImageBackground

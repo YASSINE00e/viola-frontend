@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
 
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
+
+const { width, height } = Dimensions.get("window");
 
 export default function customInput(props) {
   const styles = StyleSheet.create({
@@ -29,7 +31,9 @@ export default function customInput(props) {
       shadowRadius: 1.5,
       elevation: 2,
     },
-    container: {},
+    container: {
+      width: width * 0.8,
+    },
   });
 
   return (
