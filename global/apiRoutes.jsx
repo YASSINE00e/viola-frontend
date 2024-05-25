@@ -12,4 +12,5 @@ module.exports = {
   changeData: API_URL + "/api/Settings/ChangeData",
   deleteUser: API_URL + "/api/Settings/DeleteUser",
   analysis: API_URL + "/api/Ai/Analysis",
+  quote: API_URL + "/api/Ai/Quote",
 };

@@ -9,6 +9,7 @@ import {
   FlatList,
   ActivityIndicator,
   RefreshControl,
+  Alert,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import IconButton from "../components/customIconButton";
@@ -39,8 +40,21 @@ export default function Home({ navigation }) {
       setLoading(false);
     }
   };
+
+  const Quote = async () => {
+    try {
+      const response = await get(apiRoutes.quote);
+      if (response.status == 200) {
+        Alert.alert("Quote:", response.res);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchPatients();
+    Quote();
   }, []);
 
   const onRefresh = useCallback(() => {
