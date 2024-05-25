@@ -7,21 +7,47 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  Alert,
 } from "react-native";
 import { FontSize, FontFamily, Color } from "../global/GlobalStyles";
 import Header from "../components/customHeader";
 import Footer from "../components/customFooter";
 import Button from "../components/customButton";
+import apiRoutes from "../global/apiRoutes";
+import { post } from "../global/apiCalls";
 import AnalysisCard from "../components/customAnalysisCard";
 const { width, height } = Dimensions.get("window");
 
 export default function Analysis(props) {
+  const [age, onChangeAge] = useState(68);
+  const [weight, onChangeWeight] = useState(54);
   const [hr, onChangeHr] = useState(76);
   const [steps, onChnageSteps] = useState(11.765);
   const [calories, onChnageCalories] = useState(780);
   const [movement, onChnageMovement] = useState("Normal");
   const [sugar, onChnageSugar] = useState(0.6);
   const [blood, onChnageBlood] = useState(11.3);
+
+  const makeAnalyse = async () => {
+    const body = {
+      age: age,
+      weight: weight,
+      heartRate: hr,
+      movement: movement,
+    };
+
+    try {
+      var response = await post(apiRoutes.analysis, body);
+
+      console.log(response);
+      if (response.status == 200) {
+        Alert.alert("Analyse", response.res);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -78,13 +104,12 @@ export default function Analysis(props) {
           text={blood}
         />
         <Button
-        title="Ai analysis"
-        //onPress={}
-        width={width}
-        style={{ width: "92%", margin: 10 }}
-      />
+          title="Ai analysis"
+          onPress={makeAnalyse}
+          width={width}
+          style={{ width: "92%", margin: 10 }}
+        />
       </View>
-
 
       <Footer navigation={props.navigation} />
     </SafeAreaView>
@@ -109,7 +134,7 @@ const styles = StyleSheet.create({
 
   view: {
     flex: 1,
-    top:height*0.2,
+    top: height * 0.2,
     justifyContent: "center",
     //alignSelf: "center",
     alignItems: "center",

@@ -11,4 +11,5 @@ module.exports = {
   getUserData: API_URL + "/api/Settings/GetUserData",
   changeData: API_URL + "/api/Settings/ChangeData",
   deleteUser: API_URL + "/api/Settings/DeleteUser",
+  analysis: API_URL + "/api/Ai/Analysis",
 };
