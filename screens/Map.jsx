@@ -18,8 +18,6 @@ const { width, height } = Dimensions.get("window");
 
 export default function Signup(props) {
   const [tracking, setTracking] = useState(true);
-
-  const handleAddPatient = async () => {};
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
@@ -53,7 +51,7 @@ export default function Signup(props) {
         <Header
           navigation={props.navigation}
           title="Track you patient."
-          onPressright={() => alert("help")}
+          onPressright={() => alert("Here you can track & locate your patient's location.")}
           right={require("../assets/dots.png")}
           onPressleft={() => props.navigation.navigate("Home")}
           left={require("../assets/back.png")}

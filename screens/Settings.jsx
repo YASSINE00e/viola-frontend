@@ -149,7 +149,7 @@ export default function Settings(props) {
         <Header
           navigation={props.navigation}
           title="Settings."
-          onPressright={() => alert("Settings")}
+          onPressright={() => alert("Here you can update the caregiver's informations.")}
           right={require("../assets/dots.png")}
           onPressleft={() => props.navigation.navigate("Home")}
           left={require("../assets/back.png")}

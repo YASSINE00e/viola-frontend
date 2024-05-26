@@ -77,7 +77,7 @@ export default function EditPatient(props) {
         <Header
           navigation={props.navigation}
           title="EditPatient."
-          onPressright={() => alert("EditPatient")}
+          onPressright={() => alert("Here you can update your patient's house location and his weight.")}
           right={require("../assets/dots.png")}
           onPressleft={() => props.navigation.navigate("Home")}
           left={require("../assets/back.png")}

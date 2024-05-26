@@ -59,7 +59,7 @@ export default function Analysis(props) {
       <Header
         navigation={props.navigation}
         title="Analysis."
-        onPressright={() => alert("Analysis")}
+        onPressright={() => alert("Here you can view the vital signs and analyse them using the artifitial intelligence.")}
         right={require("../assets/dots.png")}
         onPressleft={() => props.navigation.navigate("Home")}
         left={require("../assets/back.png")}
