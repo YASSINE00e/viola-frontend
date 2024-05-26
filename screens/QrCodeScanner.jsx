@@ -69,7 +69,7 @@ export default function QrCodeScanner({ navigation }) {
         <Header
           navigation={navigation}
           title="Add your patient."
-          onPressright={() => alert("help")}
+          onPressright={() => alert("Scanne the QrCode in the bracelet box.")}
           right={require("../assets/dots.png")}
           onPressleft={() => navigation.navigate("Home")}
           left={require("../assets/back.png")}
